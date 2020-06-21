@@ -23,10 +23,10 @@ class CategoryController extends Controller
     {
         $q = $request->query('search');
 
-        return view('admin.category.index' , [
+        return view('admin.category.index', [
             'categories' => Category::with(['parent'])
-                ->where('name' , 'LIKE' , "%{$q}%")
-                ->paginate($request->query('limit' , 10))
+                ->where('name', 'LIKE', "%{$q}%")
+                ->paginate($request->query('limit', 10))
         ]);
     }
 
@@ -37,7 +37,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create' , [
+        return view('admin.category.create', [
             'categories' => Category::all()
         ]);
     }
@@ -53,7 +53,7 @@ class CategoryController extends Controller
         $request = $this->levelHandle($request);
         $category = Category::create($request->all());
 
-        return redirect(route('admin.categories.show' , $category));
+        return redirect(route('admin.categories.show', $category));
     }
 
     /**
@@ -64,7 +64,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('admin.category.show' , [
+        return view('admin.category.show', [
             'category' => $category
         ]);
     }
@@ -77,8 +77,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.category.edit' , [
-            'category' => $category ,
+        return view('admin.category.edit', [
+            'category' => $category,
             'categories' => Category::all()
         ]);
     }
@@ -90,11 +90,11 @@ class CategoryController extends Controller
      * @param Category $category
      * @return RedirectResponse|Redirector
      */
-    public function update(CategoryRequest $request , Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         $request = $this->levelHandle($request);
         $category->update($request->all());
-        return redirect(route('admin.categories.show' , $category));
+        return redirect(route('admin.categories.show', $category));
     }
 
     /**

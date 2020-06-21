@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function (){
+Route::get('/', function () {
     return 'INDEX';
 });
 
@@ -26,6 +27,7 @@ Route::group([
 
     Route::get('/', 'DashboardController')->name('dashboard');
     Route::resource('/categories', 'CategoryController');
+    Route::resource('/products', 'ProductController');
 });
 
 Auth::routes();

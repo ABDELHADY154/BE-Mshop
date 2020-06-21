@@ -1,7 +1,6 @@
-
 <li class="nav-item">
     <a href="{{ route('admin.dashboard') }}"
-       class="nav-link {{ Route::currentRouteName() == 'admin.dashboard'? 'active' : '' }}">
+        class="nav-link {{ Route::currentRouteName() == 'admin.dashboard'? 'active' : '' }}">
         <i class="nav-icon fa fa-dashboard"></i>
         <p>
             Dashboard
@@ -10,10 +9,19 @@
 </li>
 <li class="nav-item">
     <a href="{{ route('admin.categories.index') }}"
-       class="nav-link  {{ Route::currentRouteName() == 'admin.categories.index'? 'active' : '' }}">
+        class="nav-link  {{ Route::currentRouteName() == 'admin.categories.index'? 'active' : '' }}">
         <i class="nav-icon fas fa-th"></i>
         <p>
             Categories
+        </p>
+    </a>
+</li>
+<li class="nav-item">
+    <a href="{{ route('admin.products.index') }}"
+        class="nav-link  {{ Route::currentRouteName() == 'admin.products.index'? 'active' : '' }}">
+        <i class="nav-icon fas fa-th"></i>
+        <p>
+            Products
         </p>
     </a>
 </li>
