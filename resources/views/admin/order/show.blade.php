@@ -67,7 +67,7 @@
 
                                ?>
                                 <td>
-                                    <a href="{{ route('admin.orders.show', $orderdetail->id) }}"
+                                    <a href="{{ route('admin.products.show', $orderdetail->id) }}"
                                         class="btn btn-info">Show</a>
 
                                     <form action="{{route('admin.orders.destroy', $orderdetail->id) }}" method="post"

@@ -46,7 +46,7 @@
                             </form>
                         </div>
                         <div class="col text-right">
-                            {{-- <a href="{{ route('admin.orders.create') }}" class="btn btn-success">Create</a> --}}
+                            <a href="{{ route('admin.orders.create') }}" class="btn btn-success">Create</a>
                         </div>
                     </div>
 

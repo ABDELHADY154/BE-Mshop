@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\OrderDetail;
+use App\User;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -31,7 +32,10 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.order.create', [
+            'orders' => Order::with(['product'])->get(),
+            'users' => User::all()
+        ]);
     }
 
     /**
@@ -42,7 +46,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect(route('admin.orders.show',  Order::create($request->all())));
     }
 
     /**
