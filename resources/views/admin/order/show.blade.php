@@ -26,58 +26,54 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
+
             <div class="row">
                 <div class="card card-body">
+                    <div class="text-right">
+                        <form action="{{route('admin.orders.destroy', $order) }}" method="post" class="d-inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+
+                    </div>
                     <h2>Order #: {{ $order->id }}</h2>
                     <p>Client #: {{ $order->id }}</p>
                     <p>Client Name: {{ $order->name }}</p>
                     <hr>
-                    <p>Products</p>
+                    <h3>Products</h3>
                     <table class="table table-bordered">
                         <thead>
 
-                            <tr>
+                            <tr class="text-center">
                                 <th>Name</th>
                                 <th>Price</th>{{--client name --}}
-                                <th>quantity</th>
+                                <th>quantity(item)</th>
                                 <th>Action</th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $totalPrice = 0;
-                            $totalQuantity = 0;
-                            $total = 0;
 
-                            ?>
-                            @foreach($order->product as $orderdetail)
+                            @foreach($order->products as $orderdetail)
 
 
-                            <tr>
-
-
+                            <tr class="text-center">
 
                                 <td>{{ $orderdetail->name }}</td>
-                                <td>{{ $orderdetail->price  }} $</td>
-                                <td>{{ $orderdetail->quantity }} item</td>
-                                <?php
-                                $totalPrice = $orderdetail->price;
-                                $totalQuantity = $orderdetail->quantity;
-                                $total += ($totalPrice*$totalQuantity);
-
-                               ?>
+                                <td>{{ number_format($orderdetail->price, 0, '', ',')  }} $</td>
+                                <td>{{number_format($orderdetail->pivot->quantity, 0, '', ',')}}</td>
                                 <td>
                                     <a href="{{ route('admin.products.show', $orderdetail->id) }}"
                                         class="btn btn-info">Show</a>
-
-                                    <form action="{{route('admin.orders.destroy', $orderdetail->id) }}" method="post"
+                                    <form action="{{route('admin.orders.destroy',$order ) }}" method="post"
                                         class="d-inline-block">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 </td>
-
+                                <br>
                             </tr>
 
                             @endforeach
@@ -88,17 +84,17 @@
                                     <h3>Total price</h3>
                                 </td>
                                 <td>
-                                    <h3>{{number_format($total, 0, '', ',')}} $</h3>
+                                    <h3>{{number_format($order->total_amount, 0, '', ',')}} $</h3>
                                 </td>
                             </tr>
+
+
                         </tbody>
                     </table>
 
 
 
-
-
-                    {{-- <a href="{{ route('admin.orders.edit', $order) }}" class="btn btn-primary">Edit</a> --}}
+                    <a href="{{ route('admin.orders.edit', $order) }}" class="btn btn-primary">Edit</a>
                 </div>
             </div>
             <!-- /.row -->

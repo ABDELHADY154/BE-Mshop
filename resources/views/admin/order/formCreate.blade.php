@@ -1,6 +1,7 @@
 @csrf
 
 <script type="text/JavaScript">
+
     function createNewElement() {
         // First create a DIV element.
         var txtNewInputBox = document.createElement('div');
@@ -14,9 +15,11 @@
         var selectProduct = document.createElement('select');
         selectProduct.setAttribute('class','form-control');
         selectProduct.setAttribute('id','product_id');
-        selectProduct.setAttribute('name','product_id');
+        selectProduct.setAttribute('name','product_id[]');
         formGroup.appendChild(selectProduct);
-        selectProduct.innerHTML = ("@foreach ($orders as $order ) @foreach ($order->product as $orderDetail)<option>{{$orderDetail->name}} | {{$orderDetail->price}} $</option> @endforeach @endforeach");
+        selectProduct.innerHTML = (`@foreach ($products as $product )
+                                    <option value="{{$product->id}}">{{$product->name}} | {{$product->price}} $</option>
+                                                                            @endforeach`);
         var quantityInput =  document.createElement('div');
         quantityInput.setAttribute('class','col-2');
         txtNewInputBox.appendChild(quantityInput);
@@ -26,38 +29,43 @@
         var quantity = document.createElement('input');
         quantity.setAttribute('class','form-control');
         quantity.setAttribute('id','quantity');
-        quantity.setAttribute('name','quantity');
+        quantity.setAttribute('name','quantity[]');
         quantityInput.appendChild(quantity);
 
         // Finally put it where it is supposed to appear.
         document.getElementById("newElementId").appendChild(txtNewInputBox);
     }
     </script>
+
+
+
+
+
+
+
 <div class="row">
+
     <div class="form-group col-6">
         <label for="product_id">Products</label>
-        <select class="form-control" id="product_id" name="product-id">
-            @foreach ($orders as $order )
-            @foreach ($order->product as $orderDetail)
-
-            <option value="{{$orderDetail->id}}">{{$orderDetail->name}} | {{$orderDetail->price}} $</option>
+        <select class="form-control" id="product_id" name="product_id[]">
+            @foreach ($products as $product )
+            <option value="{{$product->id}}">{{$product->name}} | {{$product->price}} $</option>
             @endforeach
-            @endforeach
-
         </select>
-
     </div>
-
     <div class="col-2">
+        {{-- {{$order->price}} --}}
+
         <label for="quantity">Quantity</label>
-        <input type="text" class="form-control" id="quantity" name="quantity"></div>
+        <input type="text" class="form-control" id="quantity" name="quantity[]" value="{{ isset($order)?  : '' }}">
+    </div>
 </div>
 <div id="newElementId"></div>
 
 <div id="dynamicCheck">
     <input type="button" value="Add Product" class="btn btn-primary" onclick="createNewElement();" />
 </div>
-<div class="form-group">
+<div class="form-group">{{-- client select box --}}
     name
     <input type="text" name="name" class="form-control">
 </div>

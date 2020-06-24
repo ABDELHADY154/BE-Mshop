@@ -29,7 +29,7 @@
             <div class="row">
                 <div class="card card-body">
                     <form action="{{ route('admin.orders.store') }}" method="post">
-                        @include('admin.order.form')
+                        @include('admin.order.formCreate')
                     </form>
 
                 </div>

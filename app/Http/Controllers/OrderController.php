@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\OrderDetail;
+use App\Product;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 
 class OrderController extends Controller
 {
@@ -19,7 +21,7 @@ class OrderController extends Controller
         $q = $request->query('search');
 
         return view('admin.order.index', [
-            'orders' => Order::with(['product'])
+            'orders' => Order::with(['products'])
                 ->where('name', 'LIKE', "%{$q}%")
                 ->paginate($request->query('limit', 5))
         ]);
@@ -33,8 +35,9 @@ class OrderController extends Controller
     public function create()
     {
         return view('admin.order.create', [
-            'orders' => Order::with(['product'])->get(),
-            'users' => User::all()
+            'orders' => Order::with(['products'])->get(),
+            'users' => User::all(),
+            'products' => Product::all()
         ]);
     }
 
@@ -46,7 +49,31 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        return redirect(route('admin.orders.show',  Order::create($request->all())));
+        $order = Order::create($request->all());
+        $quantities = $request->get('quantity');
+        $products = $request->get('product_id');
+        $orderDetails = [];
+        $totalAmount = 0;
+        foreach ($products as $key => $product) {
+            $price = Product::find($product)->price;
+            $total =  $price * $quantities[$key];
+            $totalAmount += $total;
+            $orderDetails[] = [
+                'product_id' => $product,
+                'quantity' => $quantities[$key],
+                'price' => $price,
+                'total' => $total
+
+            ];
+        }
+
+        $order->total_amount = $totalAmount;
+        // dd($orderDetails);
+        $order->save();
+        $order->products()->attach($orderDetails);
+        // $totalAmount = $order->product()->sum('total');
+        // dd($totalAmount);
+        return redirect(route('admin.orders.show',  $order));
     }
 
     /**
@@ -70,7 +97,14 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        // $quantities = $request->get('quantity');
+        return view('admin.order.edit', [
+            'orders' => $order,
+            // 'quantity' => $quantities,
+            'products' => Product::all(),
+            'users' => User::all()
+
+        ]);
     }
 
     /**
@@ -82,7 +116,28 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $quantities = $request->get('quantity');
+        $products = $request->get('product_id');
+        // $orderDetails = [];
+        $totalAmount = $order->total_amount;
+        foreach ($products as $key => $product) {
+            $price = Product::find($product)->price;
+            $total =  $price * $quantities[$key];
+            $totalAmount += $total;
+            $orderDetails[] = [
+                'product_id' => $product,
+                'quantity' => $quantities[$key],
+                'price' => $price,
+                'total' => $total
+
+            ];
+        }
+        $order->total_amount = $totalAmount;
+        $order->save();
+        $order->products()->sync($orderDetails);
+        $order->update($request->all());
+
+        return redirect(route('admin.orders.show', $order));
     }
 
     /**
@@ -91,9 +146,15 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
+    # code...
     public function destroy(Order $order)
     {
+
         $order->delete();
+
+        // $order->products()->detach();
+
+
         return redirect(route('admin.orders.index'));
     }
 }

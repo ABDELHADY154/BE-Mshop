@@ -30,12 +30,12 @@
                     <div class="row">
                         <div class="col">
                             <form>
-                                <select name="limit" id="">
+                                <select name="limit" id="" class="form-control-sm">
                                     <option value="5" {{ Request::get('limit') == 5? 'selected' : '' }}>5</option>
                                     <option value="10" {{ Request::get('limit') == 10? 'selected' : '' }}>10</option>
                                     <option value="25" {{ Request::get('limit') == 25? 'selected' : '' }}>25</option>
                                 </select>
-                                <button type="submit">update</button>
+                                <button type="submit" class="btn-sm btn-success">update</button>
                             </form>
                         </div>
                         <div class="col text-center">
@@ -57,31 +57,19 @@
                             <tr>
                                 <th>#</th>
                                 <th>Client Name</th>{{--client name --}}
-                                <th>Products Total Price</th>
-                                <th>Required Total quantity</th>
-                                <th>Total</th>
-
+                                <th>Total Value</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $totalPrice = 0;
-                            $totalQuantity = 0;
+                            @php
                             $total = 0;
-                            $totalIncome = 0;
+                            @endphp
 
-                            ?>
                             @foreach($orders as $order)
-
-
-                            @foreach($order->product as $orderdetail)
-                            <?php $totalPrice += $orderdetail->price;
-                             $totalQuantity += $orderdetail->quantity;
-                             $total += ($orderdetail->price*$orderdetail->quantity);
-                             $totalIncome +=$total;
-                            ?>
-
-                            @endforeach
+                            @php
+                            $total += $order->total_amount;
+                            @endphp
 
 
                             <tr>
@@ -89,10 +77,8 @@
 
                                 <td>{{$order->name}}</td> {{--client name after making the client table  --}}
 
-                                <td>{{number_format($totalPrice, 0, '', ',')}} $</td>
-                                <td>{{ $totalQuantity }} item</td>
 
-                                <td>{{ number_format($total, 0, '', ',')}} $</td>
+                                <td>{{ number_format($order->total_amount, 0, '', ',')}} $</td>
 
                                 <td class="text-center">
                                     <a href="{{ route('admin.orders.show', $order) }}" class="btn btn-info">Show</a>
@@ -116,7 +102,7 @@
                     </div>
                     <div class="text-center">
                         <h3>Total Income:</h3>
-                        <h4>{{ number_format($totalIncome, 0, '', ',')}} $</h4>
+                        <h4>{{ number_format($total, 0, '', ',')}} $</h4>
                     </div>
                 </div>
             </div>
