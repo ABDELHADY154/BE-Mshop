@@ -48,7 +48,7 @@
     <div class="form-group col-6">
         <label for="product_id">Products</label>
         <select class="form-control" id="product_id" name="product_id[]">
-            {{-- <option value="">Not set</option> --}}
+            <option value="">Not set</option>
 
             @foreach ($products as $product )
             <option value="{{$product->id}}">{{$product->name}} | {{$product->price}} $</option>

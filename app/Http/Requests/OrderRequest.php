@@ -24,13 +24,16 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            // 'product_id[]' => 'required',
             // 'quantity[]' => 'required',
-            'client_id' => 'required',
 
 
         ];
-
+        // if (!$this->input('product_id[]')) {
+        //     $rules['product_id[]'] = 'exists:order_details,product_id';
+        // }
+        if (!$this->input('client_id')) {
+            $rules['client_id'] = 'exists:orders,client_id';
+        }
 
 
         return $rules;
@@ -39,9 +42,9 @@ class OrderRequest extends FormRequest
     {
         return [
 
-            // 'product_id[].required' => 'please select a product',
+            // 'product_id[].exists' => 'please select a product',
             // 'quantity[].required' => 'quantity is required',
-            'client_id.required' => 'please select client',
+            'client_id.exists' => 'please select client',
 
 
 

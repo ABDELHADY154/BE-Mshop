@@ -67,21 +67,21 @@
         <label for="quantity">Quantity</label>
         <input type="text" class="form-control" id="quantity" name="quantity[]"
             value="{{ isset($order)? $order->pivot->quantity : '' }}">
-        @if ($errors->first('quantity[]'))
+        {{-- @if ($errors->first('quantity[]'))
         <span class="text-danger">
             {{ $errors->first('quantity[]') }}
         </span>
-        @endif
+        @endif --}}
     </div>
 </div>
 @endforeach
 
 <div id="newElementId"></div>
-@if ($errors->first('product_id[]'))
+{{-- @if ($errors->first('product_id[]'))
 <span class="text-danger">
     {{ $errors->first('product_id[]') }}
 </span>
-@endif
+@endif --}}
 <div id="dynamicCheck">
     <input type="button" value="Add Product" class="btn btn-primary" onclick="createNewElement();" />
 </div>
