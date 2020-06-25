@@ -1,5 +1,6 @@
 <?php
 
+use App\Client;
 use App\Order;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
@@ -17,7 +18,8 @@ class OrderSeeder extends Seeder
         $faker = new Faker;
         foreach (range(0, 10) as $number) {
             Order::create([
-                'name' => Str::random(5)
+                'name' => Str::random(5),
+                'client_id' => rand(1, count(Client::all()))
 
 
             ]);

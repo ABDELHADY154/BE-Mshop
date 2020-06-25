@@ -29,6 +29,7 @@ Route::group([
     Route::resource('/categories', 'CategoryController');
     Route::resource('/products', 'ProductController');
     Route::resource('/orders', 'OrderController');
+    Route::resource('/clients', 'ClientController');
 });
 
 Auth::routes();

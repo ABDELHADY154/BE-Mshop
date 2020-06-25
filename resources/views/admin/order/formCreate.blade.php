@@ -48,27 +48,50 @@
     <div class="form-group col-6">
         <label for="product_id">Products</label>
         <select class="form-control" id="product_id" name="product_id[]">
+            {{-- <option value="">Not set</option> --}}
+
             @foreach ($products as $product )
             <option value="{{$product->id}}">{{$product->name}} | {{$product->price}} $</option>
             @endforeach
         </select>
     </div>
     <div class="col-2">
-        {{-- {{$order->price}} --}}
 
         <label for="quantity">Quantity</label>
-        <input type="text" class="form-control" id="quantity" name="quantity[]" value="{{ isset($order)?  : '' }}">
+        <input type="text" class="form-control" id="quantity" name="quantity[]">
+        {{-- @if ($errors->first('quantity[]'))
+        <span class="text-danger">
+            {{ $errors->first('quantity[]') }}
+        </span>
+        @endif --}}
     </div>
 </div>
 <div id="newElementId"></div>
-
+{{-- @if ($errors->first('product_id[]'))
+<span class="text-danger">
+    {{ $errors->first('product_id[]') }}
+</span>
+@endif --}}
 <div id="dynamicCheck">
     <input type="button" value="Add Product" class="btn btn-primary" onclick="createNewElement();" />
 </div>
-<div class="form-group">{{-- client select box --}}
-    name
-    <input type="text" name="name" class="form-control">
+<div class="form-group">
+    <label for="client_id">Client</label>
+    <select name="client_id" id="client_id" class="form-control">
+        <option value="">Not set</option>
+        @foreach($clients as $client)
+
+        <option value="{{ $client->id }}">{{ $client->name }}</option>
+        @endforeach
+    </select>
+    @if ($errors->first('client_id'))
+    <span class="text-danger">
+        {{ $errors->first('client_id') }}
+    </span>
+    @endif
 </div>
+
+
 
 <div class="text-center">
     <button type="submit" class="btn btn-success">Save</button>

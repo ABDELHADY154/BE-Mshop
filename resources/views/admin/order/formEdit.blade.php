@@ -67,18 +67,42 @@
         <label for="quantity">Quantity</label>
         <input type="text" class="form-control" id="quantity" name="quantity[]"
             value="{{ isset($order)? $order->pivot->quantity : '' }}">
+        @if ($errors->first('quantity[]'))
+        <span class="text-danger">
+            {{ $errors->first('quantity[]') }}
+        </span>
+        @endif
     </div>
 </div>
 @endforeach
 
 <div id="newElementId"></div>
-
+@if ($errors->first('product_id[]'))
+<span class="text-danger">
+    {{ $errors->first('product_id[]') }}
+</span>
+@endif
 <div id="dynamicCheck">
     <input type="button" value="Add Product" class="btn btn-primary" onclick="createNewElement();" />
 </div>
-<div class="form-group">{{-- client select box --}}
-    name
-    <input type="text" name="name" class="form-control" value="{{ isset($order)? $orders->name : '' }}">
+<div class="form-group">
+    <label for="client_id">Client</label>
+
+    <select name="client_id" id="client_id" class="form-control">
+        <option value="">Not set</option>
+        @foreach($clients as $client)
+        @if(isset($orders) && $orders->client_id == $client->id)
+        <option value="{{ $client->id }}" selected>{{ $client->name }}</option>
+        @endif
+
+        <option value="{{ $client->id }}">{{ $client->name }}</option>
+        @endforeach
+    </select>
+    @if ($errors->first('client_id'))
+    <span class="text-danger">
+        {{ $errors->first('client_id') }}
+    </span>
+    @endif
 </div>
 
 <div class=" text-center">

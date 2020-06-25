@@ -38,8 +38,8 @@
 
                     </div>
                     <h2>Order #: {{ $order->id }}</h2>
-                    <p>Client #: {{ $order->id }}</p>
-                    <p>Client Name: {{ $order->name }}</p>
+                    <p>Client #: {{ $order->clients->id}}</p>
+                    <p>Client Name: {{ $order->clients->name }}</p>
                     <hr>
                     <h3>Products</h3>
                     <table class="table table-bordered">

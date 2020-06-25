@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'All Orders')
+@section('title', 'All Clients')
 
 @section('content')
 <div class="content-wrapper">
@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Orders</h1>
+                    <h1 class="m-0 text-dark">Clients</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/">admin</a></li>
-                        <li class="breadcrumb-item active">All Orders</li>
+                        <li class="breadcrumb-item active">All Clients</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -30,61 +30,53 @@
                     <div class="row">
                         <div class="col">
                             <form>
-                                <select name="limit" id="" class="form-control-sm">
+                                <select name="limit" id="">
                                     <option value="5" {{ Request::get('limit') == 5? 'selected' : '' }}>5</option>
                                     <option value="10" {{ Request::get('limit') == 10? 'selected' : '' }}>10</option>
                                     <option value="25" {{ Request::get('limit') == 25? 'selected' : '' }}>25</option>
                                 </select>
-                                <button type="submit" class="btn-sm btn-success">update</button>
+                                <button type="submit">update</button>
                             </form>
                         </div>
                         <div class="col text-center">
                             <form>
                                 <input type="text" name="search" class="form-control">
                                 <button type="submit" class="btn btn-info">Searching</button>
-                                <a href="{{ route('admin.orders.index') }}">Reset</a>
+                                <a href="{{ route('admin.clients.index') }}">Reset</a>
                             </form>
                         </div>
                         <div class="col text-right">
-                            <a href="{{ route('admin.orders.create') }}" class="btn btn-success">Create</a>
+                            <a href="{{ route('admin.clients.create') }}" class="btn btn-success">Create</a>
                         </div>
                     </div>
 
 
+
                     <table class="table table-bordered">
                         <thead>
-
                             <tr>
                                 <th>#</th>
-                                <th>Client Name</th>{{--client name --}}
-                                <th>Total Value</th>
+                                <th>Name</th>
+                                <th>E-mail</th>
+                                <th>Phone Number</th>
+                                {{-- <th>Category</th> --}}
+
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                            $total = 0;
-                            @endphp
-
-                            @foreach($orders as $order)
-                            @php
-                            $total += $order->total_amount;
-                            @endphp
-
+                            @foreach($clients as $client)
                             <tr>
-                                <td>{{ $order->id }}</td>
-                                <td>{{$order->clients->name}}</td>
-
-
-
-
-                                <td>{{ number_format($order->total_amount, 0, '', ',')}} $</td>
+                                <td>{{ $client->id }}</td>
+                                <td>{{ $client->name }}</td>
+                                <td>{{ $client->email }}</td>
+                                <td>{{ $client->phone_number }}</td>
 
                                 <td class="text-center">
-                                    <a href="{{ route('admin.orders.show', $order) }}" class="btn btn-info">Show</a>
-                                    {{-- <a href="{{ route('admin.orders.edit', $order) }}" class="btn
-                                    btn-primary">Edit</a> --}}
-                                    <form action="{{ route('admin.orders.destroy', $order) }}" method="post"
+                                    <a href="{{ route('admin.clients.show', $client) }}" class="btn btn-info">Show</a>
+                                    <a href="{{ route('admin.clients.edit', $client) }}"
+                                        class="btn btn-primary">Edit</a>
+                                    <form action="{{ route('admin.clients.destroy', $client) }}" method="post"
                                         class="d-inline-block">
                                         @csrf
                                         @method('DELETE')
@@ -92,17 +84,11 @@
                                     </form>
                                 </td>
                             </tr>
-
                             @endforeach
                         </tbody>
                     </table>
-
                     <div class="text-right">
-                        {!! $orders->links() !!}
-                    </div>
-                    <div class="text-center">
-                        <h3>Total Income:</h3>
-                        <h4>{{ number_format($total, 0, '', ',')}} $</h4>
+                        {!! $clients->links() !!}
                     </div>
                 </div>
             </div>

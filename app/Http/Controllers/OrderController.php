@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
+use App\Http\Requests\OrderRequest;
 use App\Order;
 use App\OrderDetail;
 use App\Product;
@@ -21,7 +23,7 @@ class OrderController extends Controller
         $q = $request->query('search');
 
         return view('admin.order.index', [
-            'orders' => Order::with(['products'])
+            'orders' => Order::with(['products', 'clients'])
                 ->where('name', 'LIKE', "%{$q}%")
                 ->paginate($request->query('limit', 5))
         ]);
@@ -36,7 +38,7 @@ class OrderController extends Controller
     {
         return view('admin.order.create', [
             'orders' => Order::with(['products'])->get(),
-            'users' => User::all(),
+            'clients' => Client::all(),
             'products' => Product::all()
         ]);
     }
@@ -47,7 +49,7 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
         $order = Order::create($request->all());
         $quantities = $request->get('quantity');
@@ -102,7 +104,7 @@ class OrderController extends Controller
             'orders' => $order,
             // 'quantity' => $quantities,
             'products' => Product::all(),
-            'users' => User::all()
+            'clients' => Client::all()
 
         ]);
     }
@@ -114,7 +116,7 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(OrderRequest $request, Order $order)
     {
         $quantities = $request->get('quantity');
         $products = $request->get('product_id');

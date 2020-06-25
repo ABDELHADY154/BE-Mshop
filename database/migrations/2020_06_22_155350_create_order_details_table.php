@@ -18,8 +18,8 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('order_id')->unsigned();
             $table->integer('product_id')->unsigned();
             $table->integer('quantity')->default(1);
-            $table->integer('price');
-            $table->integer('total')->nullable();
+            $table->float('price');
+            $table->float('total')->nullable();
             $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('product_id')->references('id')->on('products');
             $table->softDeletes();
