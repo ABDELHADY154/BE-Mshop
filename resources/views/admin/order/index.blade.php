@@ -82,8 +82,8 @@
 
                                 <td class="text-center">
                                     <a href="{{ route('admin.orders.show', $order) }}" class="btn btn-info">Show</a>
-                                    {{-- <a href="{{ route('admin.orders.edit', $order) }}" class="btn
-                                    btn-primary">Edit</a> --}}
+                                    <a href="{{ route('admin.orders.edit', $order) }}" class="btn
+                                    btn-primary">Edit</a>
                                     <form action="{{ route('admin.orders.destroy', $order) }}" method="post"
                                         class="d-inline-block">
                                         @csrf

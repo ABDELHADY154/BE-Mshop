@@ -49,6 +49,7 @@
                                 <th>Name</th>
                                 <th>Price</th>{{--client name --}}
                                 <th>quantity(item)</th>
+                                <th>Total Item Price</th>
                                 <th>Action</th>
 
                             </tr>
@@ -63,9 +64,11 @@
                                 <td>{{ $orderdetail->name }}</td>
                                 <td>{{ number_format($orderdetail->price, 0, '', ',')  }} $</td>
                                 <td>{{number_format($orderdetail->pivot->quantity, 0, '', ',')}}</td>
+                                <td>{{number_format($orderdetail->pivot->total, 0, '', ',')}}</td>
+
                                 <td>
                                     <a href="{{ route('admin.products.show', $orderdetail->id) }}"
-                                        class="btn btn-info">Show</a>
+                                        class="btn btn-info">Show Product</a>
                                     <form action="{{route('admin.orders.destroy',$order ) }}" method="post"
                                         class="d-inline-block">
                                         @csrf
@@ -75,6 +78,7 @@
                                 </td>
                                 <br>
                             </tr>
+
 
                             @endforeach
                             <hr>

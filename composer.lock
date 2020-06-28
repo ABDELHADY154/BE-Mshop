@@ -4,8 +4,44 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c21b0f32d148f8ce91a7395b9c2f0f6",
+    "content-hash": "710357d048f5d39dbdbee9f6e3a64cf6",
     "packages": [
+        {
+            "name": "aelnemr/api-response",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aelnemr/api-response.git",
+                "reference": "b0ce75bfe4c405f564b212b8c888ef6b736645e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aelnemr/api-response/zipball/b0ce75bfe4c405f564b212b8c888ef6b736645e4",
+                "reference": "b0ce75bfe4c405f564b212b8c888ef6b736645e4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "libary",
+            "autoload": {
+                "psr-4": {
+                    "AElnemr\\RestFullResponse\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ahmed Elnemr Ahmed",
+                    "email": "pro.ahmedelnemr@gmail.com"
+                }
+            ],
+            "description": "This package will handle restful api response",
+            "time": "2020-06-24T23:26:24+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "1.3.0",

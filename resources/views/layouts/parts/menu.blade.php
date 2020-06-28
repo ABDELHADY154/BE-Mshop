@@ -43,3 +43,12 @@
         </p>
     </a>
 </li>
+{{-- <li class="nav-item">
+    <a href="{{ route('admin.clients.index') }}"
+class="nav-link {{ Route::currentRouteName() == 'admin.clients.index'? 'active' : '' }}">
+<i class="nav-icon fas fa-th"></i>
+<p>
+    Shops
+</p>
+</a>
+</li> --}}

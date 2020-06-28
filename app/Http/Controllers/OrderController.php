@@ -37,7 +37,7 @@ class OrderController extends Controller
     public function create()
     {
         return view('admin.order.create', [
-            'orders' => Order::with(['products'])->get(),
+            // 'orders' => Order::with(['products'])->get(),
             'clients' => Client::all(),
             'products' => Product::all()
         ]);
@@ -51,30 +51,40 @@ class OrderController extends Controller
      */
     public function store(OrderRequest $request)
     {
+
         $order = Order::create($request->all());
-        $quantities = $request->get('quantity');
-        $products = $request->get('product_id');
+        $products = $request->get('products');
         $orderDetails = [];
+        $productIds = [];
         $totalAmount = 0;
-        foreach ($products as $key => $product) {
-            $price = Product::find($product)->price;
-            $total =  $price * $quantities[$key];
+        $errors = [];
+        foreach ($products as $rowId => $product) {
+
+            if (in_array($product['product_id'], $productIds)) {
+                $errors['products'][$rowId] = 'duplicated products';
+                continue;
+            }
+            $price = $product['price'];
+            // dd($price);
+
+            $productIds[] = $product['product_id'];
+            $quantity = $product['quantity'];
+            // Product::find($product)->price;
+            $total =  $price * $quantity;
             $totalAmount += $total;
             $orderDetails[] = [
                 'product_id' => $product,
-                'quantity' => $quantities[$key],
+                'quantity' => $quantity,
                 'price' => $price,
                 'total' => $total
 
             ];
         }
-
-        $order->total_amount = $totalAmount;
         // dd($orderDetails);
-        $order->save();
-        $order->products()->attach($orderDetails);
-        // $totalAmount = $order->product()->sum('total');
+        $order->total_amount = $totalAmount;
         // dd($totalAmount);
+        $order->save();
+        $order->products()->attach($request->get('products'));
         return redirect(route('admin.orders.show',  $order));
     }
 
@@ -118,28 +128,37 @@ class OrderController extends Controller
      */
     public function update(OrderRequest $request, Order $order)
     {
-        $quantities = $request->get('quantity');
-        $products = $request->get('product_id');
-        // $orderDetails = [];
-        $totalAmount = $order->total_amount;
-        foreach ($products as $key => $product) {
-            $price = Product::find($product)->price;
-            $total =  $price * $quantities[$key];
+        $products = $request->get('products');
+        $orderDetails = [];
+        $productIds = [];
+        $totalAmount = 0;
+        $errors = [];
+        foreach ($products as $rowId => $product) {
+
+            if (in_array($product['product_id'], $productIds)) {
+                $errors['products'][$rowId] = 'duplicated products';
+                continue;
+            }
+            $price = $product['price'];
+            $productIds[] = $product['product_id'];
+            $quantity = $product['quantity'];
+            $total =  $price * $quantity;
             $totalAmount += $total;
             $orderDetails[] = [
                 'product_id' => $product,
-                'quantity' => $quantities[$key],
+                'quantity' => $quantity,
                 'price' => $price,
                 'total' => $total
 
             ];
         }
+        // dd($orderDetails);
         $order->total_amount = $totalAmount;
+        // dd($totalAmount);
         $order->save();
-        $order->products()->sync($orderDetails);
+        $order->products()->sync($request->get('products'));
         $order->update($request->all());
-
-        return redirect(route('admin.orders.show', $order));
+        return redirect(route('admin.orders.show',  $order));
     }
 
     /**
