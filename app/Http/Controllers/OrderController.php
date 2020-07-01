@@ -7,12 +7,17 @@ use App\Http\Requests\OrderRequest;
 use App\Order;
 use App\OrderDetail;
 use App\Product;
+use App\Repository\Order\OrderRepositoryInterface;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 
 class OrderController extends Controller
 {
+    public function __construct(OrderRepositoryInterface $orderRepository)
+    {
+        $this->orderRepository = $orderRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -51,7 +56,7 @@ class OrderController extends Controller
      */
     public function store(OrderRequest $request)
     {
-
+        // $this->orderRepository->create($request);
         $order = Order::create($request->all());
         $products = $request->get('products');
         $orderDetails = [];
@@ -65,11 +70,9 @@ class OrderController extends Controller
                 continue;
             }
             $price = $product['price'];
-            // dd($price);
 
             $productIds[] = $product['product_id'];
             $quantity = $product['quantity'];
-            // Product::find($product)->price;
             $total =  $price * $quantity;
             $totalAmount += $total;
             $orderDetails[] = [
@@ -80,9 +83,7 @@ class OrderController extends Controller
 
             ];
         }
-        // dd($orderDetails);
         $order->total_amount = $totalAmount;
-        // dd($totalAmount);
         $order->save();
         $order->products()->attach($request->get('products'));
         return redirect(route('admin.orders.show',  $order));
