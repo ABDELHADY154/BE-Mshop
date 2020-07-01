@@ -26,8 +26,8 @@ class ClientRegisterRequest extends FormRequest
         return [
             "name" => "required|string",
             "email" => "required|email|unique:clients",
-            "password" => "required|min:8",
-            "phone_number" => "required|integer"
+            "password" => "required|min:8|confirmed",
+            "phone_number" => "required|numeric"
 
         ];
     }

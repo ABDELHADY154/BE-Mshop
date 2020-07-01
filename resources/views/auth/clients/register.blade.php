@@ -23,140 +23,111 @@
             display: block;
         }
 
-        /* * {
-            box-sizing: border-box
-        } */
+        @import "bourbon";
 
-        /* Add padding to containers */
-        .container {
-            padding: 16px;
+        body {
+            background: #eee !important;
         }
 
-        /* Full-width input fields */
-        input[type=text],
-        input[type=password] {
-            width: 100%;
-            padding: 15px;
-            margin: 5px 0 22px 0;
-            display: inline-block;
-            border: none;
-            background: #f1f1f1;
+        .wrapper {
+            margin-top: 80px;
+            margin-bottom: 80px;
         }
 
-        input[type=text]:focus,
-        input[type=password]:focus {
-            background-color: #ddd;
-            outline: none;
-        }
+        .form-signin {
+            max-width: 380px;
+            padding: 15px 35px 45px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
 
-        /* Overwrite default styles of hr */
-        hr {
-            border: 1px solid #f1f1f1;
-            margin-bottom: 25px;
-        }
+            .form-signin-heading,
+            .checkbox {
+                margin-bottom: 30px;
+            }
 
-        /* Set a style for the submit/register button */
-        .registerbtn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 16px 20px;
-            margin: 8px 0;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            opacity: 0.9;
-        }
+            .checkbox {
+                font-weight: normal;
+            }
 
-        .registerbtn:hover {
-            opacity: 1;
-        }
+            .form-control {
+                position: relative;
+                font-size: 16px;
+                height: auto;
+                padding: 10px;
 
-        /* Add a blue text color to links */
-        a {
-            color: dodgerblue;
-        }
+            }
 
-        /* Set a grey background color and center the text of the "sign in" section */
-        .signin {
-            background-color: #f1f1f1;
-            text-align: center;
-        }
 
-        .card {
-            width: 100% !important;
+
+            input[type="text"] {
+                margin-bottom: -1px;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+            input[type="password"] {
+                margin-bottom: 20px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
         }
     </style>
 </head>
 
-<body class="hold-transition register-page">
-    @if ($errors->first('email'))
-    <span class="text-danger">
-        {{ $errors->first('email') }}
-    </span>
-    @endif
-    <div class="row">
-
-        <div class="container">
-            <div class="row">
-                <div class="card">
-                    <div class="register-logo">
-                        <a href="#"><b>{{config('app.name')}}</b></a>
-                    </div>
-                    <form method="POST" action="{{route('register-client')}}">
-                        @csrf
-                        {{-- <div class="container"> --}}
-                        <h1>Register</h1>
-                        <p>Please fill in this form to create an account.</p>
-                        <hr>
-                        <label for="name"><b>Full Name</b></label>
-                        <input type="text" placeholder="Enter Your Name" name="name" id="name" required>
-                        @if ($errors->first('name'))
-                        <span class="text-danger">
-                            {{ $errors->first('name') }}
-                        </span>
-                        @endif
-
-                        <label for="email"><b>Email</b></label>
-                        <input type="text" placeholder="Enter Email" name="email" id="email" required>
-                        @if ($errors->first('email'))
-                        <span class="text-danger">
-                            {{ $errors->first('email') }}
-                        </span>
-                        @endif
-                        <label for="phone_number"><b>Phone number</b></label>
-                        <input type="text" placeholder="Enter phone_number" name="phone_number" id="phone_number"
-                            required>
-                        @if ($errors->first('phone_number'))
-                        <span class="text-danger">
-                            {{ $errors->first('phone_number') }}
-                        </span>
-                        @endif
-                        <label for="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="password" id="psw" required>
-
-                        <label for="password"><b>Repeat Password</b></label>
-                        <input type="password" placeholder="Repeat Password" name="password" id="password" required>
-                        <hr>
-                        @if ($errors->first('password'))
-                        <span class="text-danger">
-                            {{ $errors->first('password') }}
-                        </span>
-                        @endif
-
-                        <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-                        <button type="submit" class="registerbtn">Register</button>
-                        {{-- </div> --}}
-
-                        <div class="container signin">
-                            <p>Already have an account? <a href="#">Sign in</a>.</p>
-                        </div>
-                    </form>
-                    {{-- @yield('content') --}}
-                </div>
-            </div>
+<body>
+    <div class="wrapper">
+        <div class="register-logo">
+            <a href="#"><b>{{config('app.name')}}</b></a>
         </div>
+
+        <form method="POST" action="{{route('register-client')}}" class="form-signin">
+            @csrf
+            <h2 class="form-signin-heading">Please Register</h2>
+            <label for="name"><b>Full Name</b></label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name" required="" autofocus="" />
+            @if ($errors->first('name'))
+            <span class="text-danger">
+                {{ $errors->first('name') }}
+            </span>
+            @endif
+            <label for="email"><b>E-mail</b></label>
+            <input type="text" class="form-control" id="email" name="email" placeholder="Email Address" required=""
+                autofocus="" />
+            @if ($errors->first('email'))
+            <span class="text-danger">
+                {{ $errors->first('email') }}
+            </span>
+            @endif
+            <label for="phone_number"><b>Phone Number</b></label>
+            <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="phone number"
+                required="" autofocus="" />
+            @if ($errors->first('phone_number'))
+            <span class="text-danger">
+                {{ $errors->first('phone_number') }}
+            </span>
+            @endif
+            <label for="password"><b>Password</b></label>
+
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                required="" />
+            <label for="Retype_Password"><b>Retype Password</b></label>
+
+            <input type="password" class="form-control" id="Retype_Password" name="password_confirmation"
+                placeholder="Retype Password" required="" />
+            @if ($errors->first('password'))
+            <span class="text-danger">
+                {{ $errors->first('password') }}
+            </span>
+            @endif
+            <label class="checkbox">
+                <input type="checkbox" value="Agree" id="rememberMe" name="rememberMe">Terms and conditions
+            </label>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        </form>
     </div>
-    <!-- /.register-box -->
+
 
     <!-- jQuery -->
     <script src="/admin-style/plugins/jquery/jquery.min.js"></script>

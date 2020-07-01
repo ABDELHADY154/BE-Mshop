@@ -23,81 +23,106 @@
             display: block;
         }
 
-        form {
-            border: 3px solid #f1f1f1;
+        @import "bourbon";
+
+        body {
+            background: #eee !important;
         }
 
-        /* Full-width inputs */
-        input[type=text],
-        input[type=password] {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
+        .wrapper {
+            margin-top: 80px;
+            margin-bottom: 80px;
         }
 
-        /* Set a style for all buttons */
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
+        .form-signin {
+            max-width: 380px;
+            padding: 15px 35px 45px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
 
-        /* Add a hover effect for buttons */
-        button:hover {
-            opacity: 0.8;
-        }
+            .form-signin-heading,
+            .checkbox {
+                margin-bottom: 30px;
+            }
 
-        /* Extra style for the cancel button (red) */
-        .cancelbtn {
-            width: auto;
-            padding: 10px 18px;
-            background-color: #f44336;
+            .checkbox {
+                font-weight: normal;
+            }
+
+            .form-control {
+                position: relative;
+                font-size: 16px;
+                height: auto;
+                padding: 10px;
+
+            }
+
+
+
+            input[type="text"] {
+                margin-bottom: -1px;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+            input[type="password"] {
+                margin-bottom: 20px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
         }
     </style>
 </head>
 
-<body class="hold-transition register-page">
-    <div class="card">
-
-        <div class="register-box">
-            <div class="register-logo">
-                <a href="#"><b>{{config('app.name')}}</b></a>
-            </div>
-            <form method="POST" action="{{route('login-client')}}">
-                @csrf
-                <h1>Login</h1>
-                <p>Please fill in this form to create an account.</p>
-                <hr>
-
-                <label for="uname"><b>E-mail</b></label>
-                <input type="text" placeholder="Enter email" name="email" required>
-                {{-- @if ($errors->first('email'))
-                <span class="text-danger">
-                    {{ $errors->first('email') }}
-                </span>
-                @endif --}}
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="password" required>
-                @if ($errors->first('email'))
-                <div class="text-danger text-center">
-                    {{ $errors->first('email') }}
-                </div>
-                @endif
-                <button type="submit">Login</button>
-                <label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                </label>
-            </form>
-            {{-- @yield('content') --}}
+<body class="">
+    <div class="wrapper">
+        <div class="register-logo">
+            <a href="#"><b>{{config('app.name')}}</b></a>
         </div>
+        <form method="POST" action="{{route('login-client')}}" class="form-signin">
+            @csrf
+            <h2 class="form-signin-heading">Please login</h2>
+            <label for="email"><b>E-mail</b></label>
+            <input type="text" class="form-control" id="email" name="email" placeholder="Email Address" required=""
+                autofocus="" />
+            <label for="password"><b>Password</b></label>
+
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                required="" />
+            <label class="checkbox">
+                <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+            </label>
+            @if ($errors->first('email'))
+            <div class="text-danger text-center">
+                {{ $errors->first('email') }}
+            </div>
+            @endif
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        </form>
     </div>
+
+    {{-- <div class="register-box">
+        <div class="register-logo">
+            <a href="#"><b>{{config('app.name')}}</b></a>
+    </div>
+    <form method="POST" action="{{route('login-client')}}">
+        @csrf
+        <h1>Login</h1>
+        <p>Please fill in this form to create an account.</p>
+        <hr>
+
+        <input type="text" placeholder="Enter email" name="email" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+
+        <button type="submit">Login</button>
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+    </form>
+    </div> --}}
     <!-- /.register-box -->
 
     <!-- jQuery -->
