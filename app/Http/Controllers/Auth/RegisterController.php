@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Client;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ClientRegisterRequest;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -69,5 +71,22 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+    public function clientRegisterForm()
+    {
+        return view('auth.clients.register');
+    }
+    public function registerClient(ClientRegisterRequest $request)
+    {
+        $client = Client::create($request->all());
+        if (auth('clients')->attempt([
+            'email' => $request->get('email'),
+            'phone_number' => $request->get('phone_number'),
+            'password' => $request->get('password')
+        ])) {
+            // dd($client);
+            return redirect()->route('front-index');
+        }
+        abort(401);
     }
 }

@@ -28,6 +28,7 @@
                 <div class="card card-body" style="min-height: 600px">
                     <h1></h1>
                     <h4 class="text-center">Welcome, {{Auth::user()->name}}</h4>
+
                 </div>
             </div>
             <!-- /.row -->

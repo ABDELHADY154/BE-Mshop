@@ -2,16 +2,23 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User;
 
-class Client extends Model
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
+
+class Client extends User
 {
     protected $fillable = [
-        'name', 'email', 'phone_number'
+        'name', 'email', 'phone_number', 'password'
     ];
 
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+    public function setPasswordAttribute($plainPassword)
+    {
+        $this->attributes['password'] = Hash::make($plainPassword);
     }
 }

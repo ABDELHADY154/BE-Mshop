@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return 'INDEX';
-});
+})->name('front-index');
 
 Route::group([
     'prefix' => '/admin',
@@ -33,3 +33,13 @@ Route::group([
 });
 
 Auth::routes();
+
+
+//clients routes
+
+
+Route::get('clients/register', "Auth\RegisterController@clientRegisterForm")->name('client-register-form');
+Route::post('clients/register', "Auth\RegisterController@registerClient")->name('register-client');
+
+Route::get('clients/login', "Auth\LoginController@clientloginForm")->name('client-login-form');
+Route::post('clients/login', "Auth\LoginController@loginClient")->name('login-client');

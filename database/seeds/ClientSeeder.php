@@ -21,7 +21,8 @@ class ClientSeeder extends Seeder
             Client::create([
                 'name' => $faker->name,
                 'email' => Str::random(5) . '@gmail.com',
-                'phone_number' => $faker->e164PhoneNumber
+                'phone_number' => $faker->e164PhoneNumber,
+                'password' => $faker->password,
 
                 // 'category_id' => rand(1, count(Category::all())),
                 // 'desc' => Str::random(50),

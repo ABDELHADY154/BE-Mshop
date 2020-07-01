@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ClientLoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -36,5 +37,18 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+    public function clientLoginForm()
+    {
+        return view('auth.clients.login');
+    }
+
+    public function loginClient(ClientLoginRequest $request)
+    {
+        if (auth('clients')->attempt(['email' => $request->get('email'), 'password' => $request->get('password')])) {
+            return redirect(route('front-index'));
+        }
+        $errors = ['email' => 'invalid email or password'];
+        return back()->withErrors($errors);
     }
 }
