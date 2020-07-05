@@ -11,6 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>{{ config('app.name') }} | @yield('title')</title>
+    {{-- @livewireStyles --}}
     @include('layouts.parts.css')
 </head>
 
@@ -32,6 +33,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
+    {{-- @livewireScripts --}}
     @include('layouts.parts.js')
 
     @yield('js')

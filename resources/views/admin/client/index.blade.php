@@ -50,16 +50,18 @@
                         </div>
                     </div>
 
+                    {{-- <table class="table table-bordered">
+                        @livewire('clients-table')
+                    </table> --}}
 
 
-                    <table class="table table-bordered">
+                    {{-- <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>E-mail</th>
                                 <th>Phone Number</th>
-                                {{-- <th>Category</th> --}}
 
                                 <th>Actions</th>
                             </tr>
@@ -68,27 +70,26 @@
                             @foreach($clients as $client)
                             <tr>
                                 <td>{{ $client->id }}</td>
-                                <td>{{ $client->name }}</td>
-                                <td>{{ $client->email }}</td>
-                                <td>{{ $client->phone_number }}</td>
+                    <td>{{ $client->name }}</td>
+                    <td>{{ $client->email }}</td>
+                    <td>{{ $client->phone_number }}</td>
 
-                                <td class="text-center">
-                                    <a href="{{ route('admin.clients.show', $client) }}" class="btn btn-info">Show</a>
-                                    <a href="{{ route('admin.clients.edit', $client) }}"
-                                        class="btn btn-primary">Edit</a>
-                                    <form action="{{ route('admin.clients.destroy', $client) }}" method="post"
-                                        class="d-inline-block">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    <td class="text-center">
+                        <a href="{{ route('admin.clients.show', $client) }}" class="btn btn-info">Show</a>
+                        <a href="{{ route('admin.clients.edit', $client) }}" class="btn btn-primary">Edit</a>
+                        <form action="{{ route('admin.clients.destroy', $client) }}" method="post"
+                            class="d-inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                    </table> --}}
                     <div class="text-right">
-                        {!! $clients->links() !!}
+                        {{-- {!! $clients->links() !!} --}}
                     </div>
                 </div>
             </div>
