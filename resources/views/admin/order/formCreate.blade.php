@@ -6,7 +6,7 @@
         <option value="">Not set</option>
         @foreach($clients as $client)
 
-        <option value="{{ $client->id }}">{{ $client->name }}</option>
+        <option value="{{ $client->id }}">{{$client->id}}|{{$client->name }}</option>
         @endforeach
     </select>
     @if ($errors->first('client_id'))

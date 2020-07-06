@@ -2,11 +2,14 @@
 
 namespace App\Exceptions;
 
+use AElnemr\RestFullResponse\CoreJsonResponse;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
+    use CoreJsonResponse;
     /**
      * A list of the exception types that are not reported.
      *
@@ -50,6 +53,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($request->isJson()) {
+            if ($exception instanceof NotFoundHttpException) {
+                return $this->notFound();
+            }
+        }
+
         return parent::render($request, $exception);
     }
 }

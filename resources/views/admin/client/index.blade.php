@@ -50,12 +50,9 @@
                         </div>
                     </div>
 
-                    {{-- <table class="table table-bordered">
-                        @livewire('clients-table')
-                    </table> --}}
 
 
-                    {{-- <table class="table table-bordered">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -67,29 +64,30 @@
                             </tr>
                         </thead>
                         <tbody>
+
                             @foreach($clients as $client)
                             <tr>
                                 <td>{{ $client->id }}</td>
-                    <td>{{ $client->name }}</td>
-                    <td>{{ $client->email }}</td>
-                    <td>{{ $client->phone_number }}</td>
+                                <td>{{ $client->name }}</td>
+                                <td>{{ $client->email }}</td>
+                                <td>{{ $client->phone_number }}</td>
 
-                    <td class="text-center">
-                        <a href="{{ route('admin.clients.show', $client) }}" class="btn btn-info">Show</a>
-                        <a href="{{ route('admin.clients.edit', $client) }}" class="btn btn-primary">Edit</a>
-                        <form action="{{ route('admin.clients.destroy', $client) }}" method="post"
-                            class="d-inline-block">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
-                    </tr>
-                    @endforeach
-                    </tbody>
-                    </table> --}}
-                    <div class="text-right">
-                        {{-- {!! $clients->links() !!} --}}
+                                <td class="text-center">
+                                    <a href="{{ route('admin.clients.show', $client) }}" class="btn btn-info">Show</a>
+                                    <a href="{{ route('admin.clients.edit', $client) }}"
+                                        class="btn btn-primary">Edit</a>
+                                    <button type="button" class="btn btn-danger delete"
+                                        data-url="{{ route('admin.clients.destroy', $client) }}">Delete</button>
+
+
+                                </td>
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                    <div class=" text-right">
+                        {!! $clients->links() !!}
                     </div>
                 </div>
             </div>
@@ -98,4 +96,47 @@
     </div>
     <!-- /.content -->
 </div>
+@endsection
+@section('js')
+<script>
+    $(document).on('click','.delete',function (e) {
+    e.preventDefault();
+    Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+
+
+            // $(`#delete-${$(this).data('id')}`).submit();
+            $.ajax({
+                type: "POST",
+                url: $(this).data('url'),
+                data: {
+                    _method:'DELETE',
+                    _token: '{{csrf_token()}}'
+                },
+                // dataType: "dataType",
+                success: function (response) {
+                    if (result.isConfirmed) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                )
+
+                }}
+             }
+            );
+
+                 }
+            )
+        })
+
+
+</script>
 @endsection

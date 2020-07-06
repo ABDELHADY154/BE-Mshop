@@ -25,6 +25,7 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.13.1",
         "datatables.net-bs4": "^1.10.21",
-        "datatables.net-buttons-bs4": "^1.6.2"
+        "datatables.net-buttons-bs4": "^1.6.2",
+        "sweetalert2": "^9.15.2"
     }
 }

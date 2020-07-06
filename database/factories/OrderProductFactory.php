@@ -2,11 +2,11 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Order-Product;
+use App\Order;
 use Faker\Generator as Faker;
 
-$factory->define(Order-Product::class, function (Faker $faker) {
-    return [
-        //
-    ];
-});
+// $factory->define(Order - Product::class, function (Faker $faker) {
+//     return [
+//         //
+//     ];
+// });

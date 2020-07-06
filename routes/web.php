@@ -30,6 +30,7 @@ Route::group([
     Route::resource('/products', 'ProductController');
     Route::resource('/orders', 'OrderController');
     Route::resource('/clients', 'ClientController');
+    // Route::get('/clients', 'ClientController@getClients')->name('getClients');
 });
 
 Auth::routes();

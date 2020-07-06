@@ -94,6 +94,7 @@
                             </tr>
 
                             @endforeach
+
                         </tbody>
                     </table>
 

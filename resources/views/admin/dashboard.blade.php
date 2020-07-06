@@ -30,6 +30,7 @@
                     <h4 class="text-center">Welcome, {{Auth::user()->name}}</h4>
 
                 </div>
+
             </div>
             <!-- /.row -->
         </div><!-- /.container-fluid -->

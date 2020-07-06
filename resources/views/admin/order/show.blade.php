@@ -69,12 +69,12 @@
                                 <td>
                                     <a href="{{ route('admin.products.show', $orderdetail->id) }}"
                                         class="btn btn-info">Show Product</a>
-                                    <form action="{{route('admin.orders.destroy',$order ) }}" method="post"
-                                        class="d-inline-block">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
+                                    {{-- <form action="{{route('admin.orders.destroy',$order ) }}" method="post"
+                                    class="d-inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form> --}}
                                 </td>
                                 <br>
                             </tr>
