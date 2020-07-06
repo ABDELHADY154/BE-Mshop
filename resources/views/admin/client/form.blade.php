@@ -31,9 +31,13 @@
     @endif
 
 </div>
+@if (empty($client))
 <label for="password"><b>Password</b></label>
 
-<input type="password" class="form-control" id="password" name="password" placeholder="Password" required="" />
+<input type="password" class="form-control" id="password" name="password" placeholder="Password" />
+@endif
+
 <div class="text-center">
+
     <button type="submit" class="btn btn-success">Save</button>
 </div>

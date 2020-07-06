@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Client;
+use Composer\DependencyResolver\Request;
+use Facade\Ignition\QueryRecorder\Query;
 use Kdion4891\LaravelLivewireTables\Column;
 use Kdion4891\LaravelLivewireTables\TableComponent;
 use Yajra\DataTables\Html\Columns\Checkbox;
@@ -16,8 +18,9 @@ class ClientTable extends TableComponent
     // public $checkbox_attribute = 'id';
     public $sort_attribute = 'id';
     public $sort_direction = 'asc';
-    public $per_page = 6;
+    public $per_page = 5;
 
+    // protected $num = $this->query('limit', 5);
 
     public function query()
     {
