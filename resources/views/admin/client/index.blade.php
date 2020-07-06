@@ -27,50 +27,29 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="card card-body">
-                    {{-- <div class="row">
-                        <div class="col">
-                            <form>
-                                <select name="limit" id="">
-                                    <option value="5" {{ Request::get('limit') == 5? 'selected' : '' }}>5</option>
+
+                    {{-- <div class="col">
+                <form>
+                    <select name="limit" id="">
+                        <option value="5" {{ Request::get('limit') == 5? 'selected' : '' }}>5</option>
                     <option value="10" {{ Request::get('limit') == 10? 'selected' : '' }}>10</option>
                     <option value="25" {{ Request::get('limit') == 25? 'selected' : '' }}>25</option>
                     </select>
                     <button type="submit">update</button>
                     </form>
-                </div>
-                <div class="col text-center">
-                    <form>
-                        <input type="text" name="search" class="form-control">
-                        <button type="submit" class="btn btn-info">Searching</button>
-                        <a href="{{ route('admin.clients.index') }}">Reset</a>
-                    </form>
-                </div>
-                <div class="col text-right">
+                </div> --}}
+                <div class="col text-right" style="margin-bottom: -3%">
                     <a href="{{ route('admin.clients.create') }}" class="btn btn-success">Create</a>
                 </div>
-            </div> --}}
-            {{-- <div class="col">
-                <form>
-                    <select name="limit" id="">
-                        <option value="5" {{ Request::get('limit') == 5? 'selected' : '' }}>5</option>
-            <option value="10" {{ Request::get('limit') == 10? 'selected' : '' }}>10</option>
-            <option value="25" {{ Request::get('limit') == 25? 'selected' : '' }}>25</option>
-            </select>
-            <button type="submit">update</button>
-            </form>
-        </div> --}}
-        <div class="col text-right" style="margin-bottom: -3%">
-            <a href="{{ route('admin.clients.create') }}" class="btn btn-success">Create</a>
-        </div>
-        @livewire('client-table')
+                @livewire('client-table')
 
-        <div class=" text-right">
-            {{-- {!! $clients->links() !!} --}}
+                <div class=" text-right">
+                    {{-- {!! $clients->links() !!} --}}
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<!-- /.row -->
-</div><!-- /.container-fluid -->
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
 </div>
 <!-- /.content -->
 </div>

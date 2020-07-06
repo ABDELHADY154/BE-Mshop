@@ -18,9 +18,8 @@ class ClientTable extends TableComponent
     // public $checkbox_attribute = 'id';
     public $sort_attribute = 'id';
     public $sort_direction = 'asc';
-    public $per_page = 5;
+    public $per_page = 8;
 
-    // protected $num = $this->query('limit', 5);
 
     public function query()
     {
@@ -31,11 +30,10 @@ class ClientTable extends TableComponent
     {
         return [
             Column::make('#', 'id')->searchable()->sortable(),
-            Column::make('Name')->searchable()->sortable(),
-            Column::make('E-mail', 'email')->searchable()->sortable(),
-            Column::make('Phone number')->searchable()->sortable(),
+            Column::make('Name')->searchable(),
+            Column::make('E-mail', 'email')->searchable(),
+            Column::make('Phone number')->searchable(),
 
-            Column::make('Created At')->searchable()->sortable(),
             Column::make('Actions')->view('admin.client.table-actions'),
 
         ];
