@@ -27,74 +27,42 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="card card-body">
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col">
                             <form>
                                 <select name="limit" id="">
                                     <option value="5" {{ Request::get('limit') == 5? 'selected' : '' }}>5</option>
-                                    <option value="10" {{ Request::get('limit') == 10? 'selected' : '' }}>10</option>
-                                    <option value="25" {{ Request::get('limit') == 25? 'selected' : '' }}>25</option>
-                                </select>
-                                <button type="submit">update</button>
-                            </form>
-                        </div>
-                        <div class="col text-center">
-                            <form>
-                                <input type="text" name="search" class="form-control">
-                                <button type="submit" class="btn btn-info">Searching</button>
-                                <a href="{{ route('admin.clients.index') }}">Reset</a>
-                            </form>
-                        </div>
-                        <div class="col text-right">
-                            <a href="{{ route('admin.clients.create') }}" class="btn btn-success">Create</a>
-                        </div>
-                    </div>
-
-
-
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>E-mail</th>
-                                <th>Phone Number</th>
-
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            @foreach($clients as $client)
-                            <tr>
-                                <td>{{ $client->id }}</td>
-                                <td>{{ $client->name }}</td>
-                                <td>{{ $client->email }}</td>
-                                <td>{{ $client->phone_number }}</td>
-
-                                <td class="text-center">
-                                    <a href="{{ route('admin.clients.show', $client) }}" class="btn btn-info">Show</a>
-                                    <a href="{{ route('admin.clients.edit', $client) }}"
-                                        class="btn btn-primary">Edit</a>
-                                    <button type="button" class="btn btn-danger delete"
-                                        data-url="{{ route('admin.clients.destroy', $client) }}">Delete</button>
-
-
-                                </td>
-                            </tr>
-                            @endforeach
-
-                        </tbody>
-                    </table>
-                    <div class=" text-right">
-                        {!! $clients->links() !!}
-                    </div>
+                    <option value="10" {{ Request::get('limit') == 10? 'selected' : '' }}>10</option>
+                    <option value="25" {{ Request::get('limit') == 25? 'selected' : '' }}>25</option>
+                    </select>
+                    <button type="submit">update</button>
+                    </form>
                 </div>
+                <div class="col text-center">
+                    <form>
+                        <input type="text" name="search" class="form-control">
+                        <button type="submit" class="btn btn-info">Searching</button>
+                        <a href="{{ route('admin.clients.index') }}">Reset</a>
+                    </form>
+                </div>
+                <div class="col text-right">
+                    <a href="{{ route('admin.clients.create') }}" class="btn btn-success">Create</a>
+                </div>
+            </div> --}}
+            <div class="col text-right" style="margin-bottom: -3%">
+                <a href="{{ route('admin.clients.create') }}" class="btn btn-success">Create</a>
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+            @livewire('client-table')
+
+            <div class=" text-right">
+                {{-- {!! $clients->links() !!} --}}
+            </div>
+        </div>
     </div>
-    <!-- /.content -->
+    <!-- /.row -->
+</div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->
 </div>
 @endsection
 @section('js')
@@ -112,7 +80,6 @@
         }).then((result) => {
 
 
-            // $(`#delete-${$(this).data('id')}`).submit();
             $.ajax({
                 type: "POST",
                 url: $(this).data('url'),
@@ -123,11 +90,16 @@
                 // dataType: "dataType",
                 success: function (response) {
                     if (result.isConfirmed) {
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                )
+                        Swal.fire({
+                            // position: 'center',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 10500
+                            })
+                e.preventDefault();
+
+                document.location.reload(true);
 
                 }}
              }

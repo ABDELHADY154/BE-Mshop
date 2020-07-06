@@ -21,10 +21,4 @@ class Client extends User
     {
         $this->attributes['password'] = Hash::make($plainPassword);
     }
-    // public function toArray()
-    // {
-    // }
-    // public function toArrayShow()
-    // {
-    // }
 }

@@ -3,7 +3,7 @@
 return [
 
     'success' => [
-        'success' => 'Success'
+        'success' => 'Accomplished'
     ]
 
 ];

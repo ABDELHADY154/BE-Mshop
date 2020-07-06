@@ -6,3 +6,5 @@
 
 <!-- AdminLTE App -->
 <script src="/admin-style/dist/js/adminlte.min.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+@livewireScripts
