@@ -38,9 +38,7 @@
                     <button type="submit">update</button>
                     </form>
                 </div> --}}
-                <div class="col text-right" style="margin-bottom: -3%">
-                    <a href="{{ route('admin.clients.create') }}" class="btn btn-success">Create</a>
-                </div>
+
                 @livewire('client-table')
 
                 <div class=" text-right">

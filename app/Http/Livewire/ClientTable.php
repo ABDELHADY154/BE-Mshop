@@ -7,18 +7,22 @@ use Composer\DependencyResolver\Request;
 use Facade\Ignition\QueryRecorder\Query;
 use Kdion4891\LaravelLivewireTables\Column;
 use Kdion4891\LaravelLivewireTables\TableComponent;
+use Livewire\WithPagination;
 use Yajra\DataTables\Html\Columns\Checkbox;
 
 class ClientTable extends TableComponent
 {
+    use WithPagination;
     public $table_class = 'table-hover table-striped';
     public $thead_class = 'thead-dark';
+    public $header_view = 'admin.client.table-header';
+
     public $checkbox_side = 'left';
     public $checkbox = false;
     // public $checkbox_attribute = 'id';
     public $sort_attribute = 'id';
     public $sort_direction = 'asc';
-    public $per_page = 8;
+    public $per_page = 6;
 
 
     public function query()
@@ -38,4 +42,14 @@ class ClientTable extends TableComponent
 
         ];
     }
+    // public function mount()
+    // {
+    //     $this->setTableProperties();
+    //     if (isset($_GET['limit'])) {
+    //         $perPage = $_GET['limit'];
+    //         // $per_page = $perPage;
+    //         return $perPage;
+    //         // dd($perPage);
+    //     }
+    // }
 }
