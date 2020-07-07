@@ -22,7 +22,31 @@ class ClientTable extends TableComponent
     // public $checkbox_attribute = 'id';
     public $sort_attribute = 'id';
     public $sort_direction = 'asc';
-    public $per_page = 6;
+
+    public function mount()
+    {
+        $this->setTableProperties();
+
+        if (isset($_GET['limit'])) {
+            if ($_GET['limit'] == 10) {
+                $num = 10;
+                $this->per_page = $num;
+            } elseif ($_GET['limit'] == 25) {
+                $num = 25;
+                $this->per_page = $num;
+            } elseif ($_GET['limit'] == 5) {
+                $num = 5;
+                $this->per_page = $num;
+            }
+        } else {
+            $num = 5;
+            $this->per_page = $num;
+        }
+
+        return $this->per_page;
+    }
+
+    public $per_page;
 
 
     public function query()
@@ -42,14 +66,4 @@ class ClientTable extends TableComponent
 
         ];
     }
-    // public function mount()
-    // {
-    //     $this->setTableProperties();
-    //     if (isset($_GET['limit'])) {
-    //         $perPage = $_GET['limit'];
-    //         // $per_page = $perPage;
-    //         return $perPage;
-    //         // dd($perPage);
-    //     }
-    // }
 }
