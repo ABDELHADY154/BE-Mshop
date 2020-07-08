@@ -7,12 +7,9 @@ use Composer\DependencyResolver\Request;
 use Facade\Ignition\QueryRecorder\Query;
 use Kdion4891\LaravelLivewireTables\Column;
 use Kdion4891\LaravelLivewireTables\TableComponent;
-use Livewire\WithPagination;
-use Yajra\DataTables\Html\Columns\Checkbox;
 
 class ClientTable extends TableComponent
 {
-    use WithPagination;
     public $table_class = 'table-hover table-striped';
     public $thead_class = 'thead-dark';
     public $header_view = 'admin.client.table-header';

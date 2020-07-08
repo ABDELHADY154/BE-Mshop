@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
+
+
     use CoreJsonResponse;
     public function index()
     {

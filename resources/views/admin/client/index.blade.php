@@ -27,29 +27,15 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="card card-body">
-
-                    {{-- <div class="col">
-                <form>
-                    <select name="limit" id="">
-                        <option value="5" {{ Request::get('limit') == 5? 'selected' : '' }}>5</option>
-                    <option value="10" {{ Request::get('limit') == 10? 'selected' : '' }}>10</option>
-                    <option value="25" {{ Request::get('limit') == 25? 'selected' : '' }}>25</option>
-                    </select>
-                    <button type="submit">update</button>
-                    </form>
-                </div> --}}
-
-                @livewire('client-table')
-
-                <div class=" text-right">
-                    {{-- {!! $clients->links() !!} --}}
+                    @livewire('client-table')
+                    <div class=" text-right">
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- /.row -->
-    </div><!-- /.container-fluid -->
-</div>
-<!-- /.content -->
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
 </div>
 @endsection
 @section('js')
@@ -80,11 +66,11 @@
 
                        Swal.fire({
                             // position: 'center',
-                            // icon: 'success',
+                            icon: 'success',
                             title: 'Item Deleted',
                             showConfirmButton: false,
-                            timer: 10500
-                            })
+                            timer: 100000
+                            });
                                 e.preventDefault();
                                 location.reload();
 
