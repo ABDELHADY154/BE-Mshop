@@ -15,10 +15,17 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
-Route::get('/', function () {
-    return 'INDEX';
-})->name('front-index');
+// Route::get('/', function () {
+//     return redirect(route('admin.dashboard'));
+// });
 
+Route::get('/', function () {
+    if (isset(Auth::guard('clients')->user()->name)) {
+        return 'welcome ' . Auth::guard('clients')->user()->name;
+    } else {
+        return redirect(route('admin.dashboard'));
+    }
+})->name('front-index');
 Route::group([
     'prefix' => '/admin',
     'as' => 'admin.',
