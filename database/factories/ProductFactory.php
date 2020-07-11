@@ -9,7 +9,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Product::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'name' => $faker->colorName,
         'price' => rand(50, 500),
         'quantity' => rand(50, 500),
         'category_id' => rand(1, Category::all()->count()),
