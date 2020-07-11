@@ -23,15 +23,16 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $q = $request->query('search');
+        $total = 0;
 
-        return view('admin.order.index', [
-            'orders' => Order::with(['products', 'clients'])
-                ->where('name', 'LIKE', "%{$q}%")
-                ->paginate($request->query('limit', 5))
-        ]);
+        $orders = Order::all();
+        foreach ($orders as  $order) {
+            $total += $order->total_amount;
+        }
+
+        return view('admin.order.index', ['total' => $total]);
     }
 
     /**

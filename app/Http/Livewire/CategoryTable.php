@@ -2,18 +2,15 @@
 
 namespace App\Http\Livewire;
 
-use App\Client;
-use Composer\DependencyResolver\Request;
-use Facade\Ignition\QueryRecorder\Query;
+use App\Category;
 use Kdion4891\LaravelLivewireTables\Column;
 use Kdion4891\LaravelLivewireTables\TableComponent;
 
-class ClientTable extends TableComponent
+class CategoryTable extends TableComponent
 {
     public $table_class = 'table-hover table-striped';
     public $thead_class = 'thead-dark';
-    public $header_view = 'admin.client.table-header';
-
+    public $header_view = 'admin.category.table-header';
     public $checkbox_side = 'left';
     public $checkbox = false;
     // public $checkbox_attribute = 'id';
@@ -49,18 +46,17 @@ class ClientTable extends TableComponent
 
     public function query()
     {
-        return Client::query();
+        return Category::query()->with('parent');
     }
 
     public function columns()
     {
         return [
             Column::make('#', 'id')->searchable()->sortable(),
-            Column::make('Name')->searchable(),
-            Column::make('E-mail', 'email')->searchable(),
-            Column::make('Phone number')->searchable(),
+            Column::make('Category Name', 'name')->searchable(),
+            Column::make('Parent', 'parent.name')->searchable(),
             Column::make('Created at', 'created_at')->searchable(),
-            Column::make('Actions')->view('admin.client.table-actions'),
+            Column::make('Actions')->view('admin.category.table-actions'),
 
         ];
     }

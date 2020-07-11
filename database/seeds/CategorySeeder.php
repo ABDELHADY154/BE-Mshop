@@ -15,13 +15,15 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        $faker = new Faker;
-        foreach (range(0, 20) as $number) {
-            Category::create([
-                'name' => Str::random(5),
-                'parent_id' => rand(1, count(Category::all())),
-                'description' => Str::random(50)
-            ]);
-        }
+        factory(Category::class, 50)->create();
+
+        // $faker = new Faker;
+        // foreach (range(0, 20) as $number) {
+        //     Category::create([
+        //         'name' => Str::random(5),
+        //         'parent_id' => rand(1, count(Category::all())),
+        //         'description' => Str::random(50)
+        //     ]);
+        // }
     }
 }

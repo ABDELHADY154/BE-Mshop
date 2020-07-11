@@ -27,80 +27,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="card card-body">
-                    <div class="row">
-                        <div class="col">
-                            <form>
-                                <select name="limit" id="" class="form-control-sm">
-                                    <option value="5" {{ Request::get('limit') == 5? 'selected' : '' }}>5</option>
-                                    <option value="10" {{ Request::get('limit') == 10? 'selected' : '' }}>10</option>
-                                    <option value="25" {{ Request::get('limit') == 25? 'selected' : '' }}>25</option>
-                                </select>
-                                <button type="submit" class="btn-sm btn-success">update</button>
-                            </form>
-                        </div>
-                        <div class="col text-center">
-                            <form>
-                                <input type="text" name="search" class="form-control">
-                                <button type="submit" class="btn btn-info">Searching</button>
-                                <a href="{{ route('admin.orders.index') }}">Reset</a>
-                            </form>
-                        </div>
-                        <div class="col text-right">
-                            <a href="{{ route('admin.orders.create') }}" class="btn btn-success">Create</a>
-                        </div>
-                    </div>
-
-
-                    <table class="table table-bordered">
-                        <thead>
-
-                            <tr>
-                                <th>#</th>
-                                <th>Client Name</th>{{--client name --}}
-                                <th>Total Value</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                            $total = 0;
-                            @endphp
-
-                            @foreach($orders as $order)
-                            @php
-                            $total += $order->total_amount;
-                            @endphp
-
-                            <tr>
-                                <td>{{ $order->id }}</td>
-                                <td>{{$order->clients->name}}</td>
-
-
-
-
-                                <td>{{ number_format($order->total_amount, 0, '', ',')}} $</td>
-
-                                <td class="text-center">
-                                    <a href="{{ route('admin.orders.show', $order) }}" class="btn btn-info">Show</a>
-                                    <a href="{{ route('admin.orders.edit', $order) }}" class="btn
-                                    btn-primary">Edit</a>
-                                    <form action="{{ route('admin.orders.destroy', $order) }}" method="post"
-                                        class="d-inline-block">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-
-                            @endforeach
-
-                        </tbody>
-                    </table>
-
-                    <div class="text-right">
-                        {!! $orders->links() !!}
-                    </div>
+                    @livewire('order-table')
                     <div class="text-center">
                         <h3>Total Income:</h3>
                         <h4>{{ number_format($total, 0, '', ',')}} $</h4>
@@ -112,4 +39,51 @@
     </div>
     <!-- /.content -->
 </div>
+@endsection
+@section('js')
+<script>
+    $(document).on('click','.delete',function (e) {
+    e.preventDefault();
+    Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+
+
+            $.ajax({
+                type: "POST",
+                url: $(this).data('url'),
+                data: {
+                    _method:'DELETE',
+                    _token: '{{csrf_token()}}'
+                },
+                // dataType: "dataType",
+                success: function (response) {
+                    if (result.isConfirmed) {
+
+                       Swal.fire({
+                            // position: 'center',
+                            icon: 'success',
+                            title: 'Item Deleted',
+                            showConfirmButton: false,
+                            timer: 100000
+                            });
+                                e.preventDefault();
+                                location.reload();
+
+                }}
+             }
+            );
+
+                 }
+            )
+        })
+
+
+</script>
 @endsection

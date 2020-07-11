@@ -14,7 +14,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/">admin</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('admin.orders.index') }}">Products</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.products.index') }}">Products</a></li>
                         <li class="breadcrumb-item active">Edit Product {{$product->name}}</li>
                     </ol>
                 </div><!-- /.col -->
@@ -28,7 +28,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="card card-body">
-                    <form action="{{ route('admin.orders.update', $order) }}" method="post">
+                    <form action="{{ route('admin.products.update', $product) }}" method="post">
                         @method('PUT')
                         @include('admin.product.form')
                     </form>

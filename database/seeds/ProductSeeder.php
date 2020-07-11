@@ -17,18 +17,20 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $faker = new Faker;
-        foreach (range(0, 10) as $number) {
-            Product::create([
-                'name' => Str::random(5),
-                'category_id' => rand(1, count(Category::all())),
-                'desc' => Str::random(50),
-                'price' => rand(10, 1000),
-                'quantity' => rand(1, 200),
-                'user_id' => rand(1, count(User::all()))
+        factory(Product::class, 50)->create();
+
+        // $faker = new Faker;
+        // foreach (range(0, 10) as $number) {
+        //     Product::create([
+        //         'name' => Str::random(5),
+        //         'category_id' => rand(1, count(Category::all())),
+        //         'desc' => Str::random(50),
+        //         'price' => rand(10, 1000),
+        //         'quantity' => rand(1, 200),
+        //         'user_id' => rand(1, count(User::all()))
 
 
-            ]);
-        }
+        //     ]);
+        // }
     }
 }
