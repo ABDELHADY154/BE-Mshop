@@ -15,7 +15,7 @@ class ClientSeeder extends Seeder
      */
     public function run()
     {
-        factory(Client::class, 50)->create();
+        factory(Client::class, 200)->create();
         // $faker = Faker::create();
         // // $faker = new Faker;
         // foreach (range(0, 10) as $number) {

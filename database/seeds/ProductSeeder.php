@@ -17,7 +17,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        factory(Product::class, 50)->create();
+        factory(Product::class, 200)->create();
 
         // $faker = new Faker;
         // foreach (range(0, 10) as $number) {

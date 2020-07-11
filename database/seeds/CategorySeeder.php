@@ -15,7 +15,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        factory(Category::class, 50)->create();
+        factory(Category::class, 200)->create();
 
         // $faker = new Faker;
         // foreach (range(0, 20) as $number) {
