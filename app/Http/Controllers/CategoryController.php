@@ -21,13 +21,15 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $q = $request->query('search');
+        // $q = $request->query('search');
 
-        return view('admin.category.index', [
-            'categories' => Category::with(['parent'])
-                ->where('name', 'LIKE', "%{$q}%")
-                ->paginate($request->query('limit', 10))
-        ]);
+        // return view('admin.category.index', [
+        //     'categories' => Category::with(['parent'])
+        //         ->where('name', 'LIKE', "%{$q}%")
+        //         ->paginate($request->query('limit', 10))
+        // ]);
+
+        return view('admin.category.index');
     }
 
     /**
