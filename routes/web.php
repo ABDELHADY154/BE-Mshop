@@ -19,13 +19,16 @@ use Illuminate\Support\Facades\Auth;
 //     return redirect(route('admin.dashboard'));
 // });
 
-Route::get('/', function () {
-    if (isset(Auth::guard('clients')->user()->name)) {
-        return 'welcome ' . Auth::guard('clients')->user()->name;
-    } else {
-        return redirect(route('admin.dashboard'));
-    }
-})->name('front-index');
+// Route::get('/', function () {
+//     if (isset(Auth::guard('clients')->user()->name)) {
+//         return 'welcome ' . Auth::guard('clients')->user()->name;
+//     } else {
+//         return redirect(route('admin.dashboard'));
+//     }
+// })->name('front-index');
+Route::get('/', 'FrontController@index')->name('front-index');
+Route::get('client/logout', 'FrontController@logout')->name('client-logout');
+
 Route::group([
     'prefix' => '/admin',
     'as' => 'admin.',
