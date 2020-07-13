@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Front;
+use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,9 +17,28 @@ class FrontController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('clients.index');
+        // if (isset($_GET['category'])) {
+        //     $filter = $_GET['category'];
+        // } else {
+        //     $filter = '';
+        // }
+
+        $q = $request->query('search');
+        $c = $request->query('category');
+        $p = $request->query('price');
+
+
+        return view('clients.index', [
+            'categories' => Category::all(),
+            'Allproducts' => Product::all(),
+            'products' => Product::where('name', 'like', "%{$q}%")->paginate($request->query('limit', 5)),
+            'productsFilterd' => Product::where('price', '=', $p)->orWhere('category_id', '=', $c)->paginate($request->query('limit', 5)),
+            // 'filter' => Product::where(['price', '=', $p] & ['category_id', '=', $c])->paginate($request->query('limit', 5)),
+
+
+        ]);
     }
 
     /**
