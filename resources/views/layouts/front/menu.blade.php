@@ -32,8 +32,8 @@ if ($maxPrice < $product->price) {
         </div>
         <div class="slidecontainer">
             <p style="color: white">Price: <span id="demo"></span> $</p>
-            <input type="range" min="1" max="{{$maxPrice}}" value="{{null}}" class="slider" id="myRange" name="price">
+            <input type="range" min="1" max="{{$maxPrice}}" value="{{$maxPrice/2}}" class="slider" id="myRange"
+                onchange="change();" name="price">
         </div>
         <button type="submit" class="btn btn-primary">update</button>
-
     </form>
