@@ -8,7 +8,7 @@
             <a href="/" class="nav-link {{Route::currentRouteName()=='home.index'? 'active':''}}">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{route('admin.dashboard')}}" class="btn btn-primary">Admin</a>
+            {{-- <a href="{{route('admin.dashboard')}}" class="btn btn-primary">Admin</a> --}}
         </li>
     </ul>
     <div class="ml-auto">

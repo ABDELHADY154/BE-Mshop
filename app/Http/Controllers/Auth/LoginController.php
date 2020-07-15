@@ -46,7 +46,7 @@ class LoginController extends Controller
     public function loginClient(ClientLoginRequest $request)
     {
         if (auth('clients')->attempt(['email' => $request->get('email'), 'password' => $request->get('password')])) {
-            return redirect(route('front-index'));
+            return redirect(route('home.index'));
         }
         $errors = ['email' => 'invalid email or password'];
         return back()->withErrors($errors);

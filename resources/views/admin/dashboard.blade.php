@@ -9,8 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    {{-- <h1 class="m-0 text-dark">Admin Dashboard</h1> --}}
-                    <h4 class="text-left">Welcome, {{Auth::user()->name}}</h4>
+                    {{-- <h4 class="text-left">Welcome, {{Auth::user()->name}}</h4> --}}
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -28,13 +27,8 @@
             <div class="row">
                 <div class="card card-body" style="min-height: 600px">
                     <h1></h1>
-                    @php
-
-
-                    @endphp
-                    {{-- <h4 class="text-center">Welcome, {{Auth::user()->name}}</h4> --}}
                     <div class="row">
-                        <div class="col-lg-3 col-6">
+                        <div class="col-lg col-6">
                             <!-- small box -->
                             <div class="small-box bg-info">
                                 <div class="inner">
@@ -50,7 +44,7 @@
                             </div>
                         </div>
                         <!-- ./col -->
-                        <div class="col-lg-3 col-6">
+                        <div class="col-lg col-6">
                             <!-- small box -->
                             <div class="small-box bg-success">
                                 <div class="inner">
@@ -66,7 +60,7 @@
                             </div>
                         </div>
                         <!-- ./col -->
-                        <div class="col-lg-3 col-6">
+                        <div class="col-lg col-6">
                             <!-- small box -->
                             <div class="small-box bg-warning">
                                 <div class="inner">
@@ -82,7 +76,7 @@
                             </div>
                         </div>
                         <!-- ./col -->
-                        <div class="col-lg-3 col-6">
+                        <div class="col-lg col-6">
                             <!-- small box -->
                             <div class="small-box bg-danger">
                                 <div class="inner">
@@ -94,6 +88,21 @@
                                     <i class="ion ion-pie-graph"></i>
                                 </div>
                                 <a href="{{route('admin.categories.index')}}" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-success">
+                                <div class="inner">
+                                    <h3>{{ number_format($total, 0, '', ',')}} $</h3>
+
+                                    <p>Sales</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <a href="{{route('admin.orders.index')}}" class="small-box-footer">More info <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>

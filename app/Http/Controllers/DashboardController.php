@@ -17,7 +17,9 @@ class DashboardController extends Controller
         $clients = Client::all();
         $categories = Category::all();
         $orderCount = 0;
+        $total = 0;
         foreach ($orders as $order) {
+            $total += $order->total_amount;
             $orderCount++;
         }
         $productsCount = 0;
@@ -37,6 +39,7 @@ class DashboardController extends Controller
             'productsCount' => $productsCount,
             'clientsCount' => $clientsCount,
             'categoryCount' => $categoryCount,
+            'total' => $total,
         ]);
     }
 }

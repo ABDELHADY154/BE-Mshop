@@ -85,7 +85,7 @@ class RegisterController extends Controller
             'password' => $request->get('password')
         ])) {
             // dd($client);
-            return redirect()->route('front-index');
+            return redirect()->route('home.index');
         }
         abort(401);
     }
