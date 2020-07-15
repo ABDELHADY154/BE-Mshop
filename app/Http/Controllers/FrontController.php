@@ -48,7 +48,6 @@ class FrontController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -68,9 +67,9 @@ class FrontController extends Controller
      * @param  \App\Front  $front
      * @return \Illuminate\Http\Response
      */
-    public function show(Front $front)
+    public function show(Product $product)
     {
-        //
+        return view('clients.show', ['product' => $product]);
     }
 
     /**

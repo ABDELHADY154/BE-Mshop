@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * App\User
@@ -65,5 +66,9 @@ class User extends Authenticatable
     public function product()
     {
         return $this->hasMany(Product::class, 'user_id');
+    }
+    public function setPasswordAttribute($plainPassword)
+    {
+        $this->attributes['password'] = Hash::make($plainPassword);
     }
 }

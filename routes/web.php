@@ -26,7 +26,12 @@ use Illuminate\Support\Facades\Auth;
 //         return redirect(route('admin.dashboard'));
 //     }
 // })->name('front-index');
-Route::get('/', 'FrontController@index')->name('front-index');
+Route::group(['prefix' => '/', 'as' => 'home.'], function () {
+    Route::resource('/', 'FrontController');
+});
+
+// Route::get('/', 'FrontController@index')->name('front-index');
+
 Route::get('client/logout', 'FrontController@logout')->name('client-logout');
 
 Route::group([
@@ -40,10 +45,13 @@ Route::group([
     Route::resource('/products', 'ProductController');
     Route::resource('/orders', 'OrderController');
     Route::resource('/clients', 'ClientController');
+    Route::resource('/users', 'UserController');
+
     // Route::get('/clients', 'ClientController@getClients')->name('getClients');
 });
 
 Auth::routes();
+Route::get('/{product}', 'FrontController@show')->name('front.show');
 
 
 //clients routes

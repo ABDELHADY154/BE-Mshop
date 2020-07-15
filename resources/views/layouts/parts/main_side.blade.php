@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="/admin" class="brand-link text-center">
 
-        <span class="brand-text font-weight-light">M-SHOP</span>
+        <span class="brand-text font-weight-light" style="color: white">M-SHOP</span>
     </a>
 
     <!-- Sidebar -->

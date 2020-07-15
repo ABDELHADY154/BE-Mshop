@@ -99,7 +99,13 @@
             </div>
             @endif
             <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+            <div class="text-center">or
+                <hr>
+            </div>
+            <a class="btn btn-lg btn-success btn-block" href="{{route('register-client')}}">Register</a>
+
         </form>
+
     </div>
 
     {{-- <div class="register-box">

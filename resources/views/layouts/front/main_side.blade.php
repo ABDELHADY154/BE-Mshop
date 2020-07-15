@@ -22,8 +22,8 @@
 </div> --}}
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/" class="brand-link">
-        <span class="brand-text font-weight-light">M-shop</span>
+    <a href="/" class="brand-link text-center">
+        <span class="brand-text font-weight-light" style="color: white">M-shop</span>
     </a>
 
     <!-- Sidebar -->

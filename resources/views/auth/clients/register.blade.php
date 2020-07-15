@@ -125,6 +125,10 @@
             </label>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+            <div class="text-center">or
+                <hr>
+            </div>
+            <a class="btn btn-lg btn-success btn-block" href="{{route('login-client')}}">Login</a>
         </form>
     </div>
 

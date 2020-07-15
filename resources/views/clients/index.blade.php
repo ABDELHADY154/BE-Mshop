@@ -17,14 +17,14 @@
             </div>
             <div class="row row-cols-1 row-cols-md-3">
                 @if(isset($_GET['category'])||isset($_GET['price']))
-                @foreach ($productsFilterd as $productf)
+                @foreach ($productsFilterd as $product)
                 <div class="col mb-4 text-center">
                     <div class="card">
-                        <img src="{{$productf->image}}" class="card-img-top" alt="productf-image">
+                        <img src="{{$product->image}}" class="card-img-top" alt="product-image">
                         <div class="card-body">
-                            <h5 class="card-title">{{$productf->name}}</h5>
-                            <p class="card-text">{{$productf->price}} $</p>
-                            <a href="{{route('admin.products.show',$productf)}}" class="btn btn-primary">Show
+                            <h5 class="card-title">{{$product->name}}</h5>
+                            <p class="card-text">{{$product->price}} $</p>
+                            <a href="{{route('front.show',$product)}}" class="btn btn-primary">Show
                                 Product</a>
                         </div>
                     </div>
@@ -38,7 +38,8 @@
                         <div class="card-body">
                             <h5 class="card-title">{{$product->name}}</h5>
                             <p class="card-text">{{$product->price}} $</p>
-                            <a href="{{route('admin.products.show',$product)}}" class="btn btn-primary">Show Product</a>
+                            <a href="{{route('front.show',$product)}}" class="btn btn-primary">Show Product</a>
+
                         </div>
                     </div>
                 </div>

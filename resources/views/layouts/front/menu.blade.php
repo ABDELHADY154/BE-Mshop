@@ -1,11 +1,12 @@
+@if(Route::currentRouteName()=='home.index')
 @php
 $maxPrice = 0;
 @endphp
 
-@foreach($Allproducts as $product)
+@foreach($Allproducts as $productmin)
 @php
-if ($maxPrice < $product->price) {
-    $maxPrice = $product->price;
+if ($maxPrice < $productmin->price) {
+    $maxPrice = $productmin->price;
     }
     @endphp
     @endforeach
@@ -37,3 +38,9 @@ if ($maxPrice < $product->price) {
         </div>
         <button type="submit" class="btn btn-primary">update</button>
     </form>
+    @else
+    <li class="nav-item d-none d-sm-inline-block">
+        <a href="/" class="nav-link"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+            Back </a>
+    </li>
+    @endif
