@@ -7,16 +7,19 @@
         <li class="nav-item d-none d-sm-inline-block">
             <a href="/" class="nav-link">Home</a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
+        {{-- <li class="nav-item d-none d-sm-inline-block">
             <form action="{{ route('logout') }}" method="post" class="d-inline-block">
-                @csrf
-                <button type="submit" class="btn btn-link nav-link">Logout</button>
-            </form>
-        </li>
+        @csrf
+        <button type="submit" class="btn btn-link nav-link">Logout</button>
+        </form>
+        </li> --}}
     </ul>
-
+    <form action="{{ route('logout') }}" method="post" class="form-inline ml-auto">
+        @csrf
+        <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-auto">
+    {{-- <form class="form-inline ml-auto">
         <div class="input-group input-group-sm">
             <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
             <div class="input-group-append">
@@ -25,7 +28,7 @@
                 </button>
             </div>
         </div>
-    </form>
+    </form> --}}
 
     <!-- Right navbar links -->
     {{-- <ul class="navbar-nav ml-auto">

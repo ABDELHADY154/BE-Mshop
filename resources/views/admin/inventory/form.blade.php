@@ -6,6 +6,8 @@
         @foreach($products as $product)
         @if(isset($inventory) && $product->id == $inventory->product->id)
         <option value="{{ $product->id }}" selected>{{$product->id}}|{{$product->name }}</option>
+        @elseif(isset($_GET['productID']) && $_GET['productID'] == $product->id)
+        <option value="{{ $product->id }}" selected>{{$product->id}}|{{$product->name }}</option>
         @else
         <option value="{{ $product->id }}">{{$product->id}}|{{$product->name }}</option>
         @endif

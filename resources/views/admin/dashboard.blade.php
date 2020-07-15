@@ -109,6 +109,27 @@
 
                         <!-- ./col -->
                     </div>
+                    {{-- search for products form  --}}
+
+                    <div class="">
+                        <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
+                            {{-- <i class="fas fa-search" aria-hidden="true"></i> --}}
+                            <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+                                aria-label="Search" id="myInput" onkeyup="myFunction()">
+                        </form>
+                        <ul id="myUL" class="w-100 m-auto">
+                            @foreach ($products as $product)
+                            <li style="display: none">
+                                <a href="{{route('admin.inventories.create',['productID'=> $product->id])}}">
+                                    {{$product->name}}
+                                    <button class="btn btn-primary">Add To Inventory</button>
+
+                                </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+
                 </div>
 
             </div>
@@ -117,4 +138,31 @@
     </div>
     <!-- /.content -->
 </div>
+@endsection
+@section('js')
+<script>
+    function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        }else {
+            li[i].style.display = "none";
+        }
+
+    }
+    if(!(txtValue.toUpperCase().indexOf(filter)))
+        {
+            ul.style.display="none";
+        }else{
+            ul.style.display="";
+        }
+}
+</script>
 @endsection

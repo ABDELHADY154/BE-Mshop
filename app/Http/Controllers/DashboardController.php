@@ -40,6 +40,7 @@ class DashboardController extends Controller
             'clientsCount' => $clientsCount,
             'categoryCount' => $categoryCount,
             'total' => $total,
+            'products' => $products,
         ]);
     }
 }
