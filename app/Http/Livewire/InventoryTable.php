@@ -2,18 +2,18 @@
 
 namespace App\Http\Livewire;
 
-use App\User;
+use App\Inventory;
 use Kdion4891\LaravelLivewireTables\Column;
 use Kdion4891\LaravelLivewireTables\TableComponent;
 
-class UserTable extends TableComponent
+class InventoryTable extends TableComponent
 {
     public $table_class = 'table-hover table-striped';
     public $thead_class = 'thead-dark';
-    public $header_view = 'admin.user.table-header';
-
+    public $header_view = 'admin.inventory.table-header';
     public $checkbox_side = 'left';
     public $checkbox = false;
+    // public $checkbox_attribute = 'id';
     public $sort_attribute = 'id';
     public $sort_direction = 'asc';
 
@@ -45,23 +45,19 @@ class UserTable extends TableComponent
 
     public function query()
     {
-        return User::query();
+        return Inventory::query()->with('product', 'user');
     }
-    public function tdClass($attribute, $value)
-    {
-        if ($attribute == 'is_admin' && $value == false) return 'table-danger';
-        if ($attribute == 'is_admin' && $value == 1) return 'table-success';
-        return null;
-    }
+
     public function columns()
     {
         return [
             Column::make('#', 'id')->searchable()->sortable(),
-            Column::make('Name')->searchable(),
-            Column::make('E-mail', 'email')->searchable(),
-            Column::make('Admin', 'is_admin')->searchable(),
+            Column::make('Quantity(item)', 'quantity')->searchable(),
+            Column::make('Price($)', 'price')->searchable(),
+            Column::make('Product Name', 'product.name')->searchable(),
+            Column::make('Vendor Name', 'user.name')->searchable(),
             Column::make('Created at', 'created_at')->searchable(),
-            Column::make('Actions')->view('admin.user.table-actions'),
+            Column::make('Actions')->view('admin.inventory.table-actions'),
 
         ];
     }

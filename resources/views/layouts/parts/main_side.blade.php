@@ -13,7 +13,7 @@
                 <img src="/admin-style/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="{{route('admin.clients.show',Auth::user()->id)}}" class="d-block">{{Auth::user()->name}}</a>
+                <a href="{{route('admin.users.show',Auth::user()->id)}}" class="d-block">{{Auth::user()->name}}</a>
             </div>
         </div>
 

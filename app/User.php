@@ -43,7 +43,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'is_admin',
     ];
 
     /**
@@ -62,6 +62,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_admin' => 'boolean',
     ];
     public function product()
     {
@@ -70,5 +71,9 @@ class User extends Authenticatable
     public function setPasswordAttribute($plainPassword)
     {
         $this->attributes['password'] = Hash::make($plainPassword);
+    }
+    public function inventory()
+    {
+        return $this->hasOne(Inventory::class);
     }
 }

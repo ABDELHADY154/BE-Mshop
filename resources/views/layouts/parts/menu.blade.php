@@ -36,6 +36,15 @@
     </a>
 </li>
 <li class="nav-item">
+    <a href="{{ route('admin.inventories.index') }}"
+        class="nav-link  {{ Route::currentRouteName() == 'admin.inventories.index'? 'active' : '' }}">
+        <i class="nav-icon fas fa-warehouse"></i>
+        <p>
+            Inventory
+        </p>
+    </a>
+</li>
+<li class="nav-item">
     <a href="{{ route('admin.clients.index') }}"
         class="nav-link  {{ Route::currentRouteName() == 'admin.clients.index'? 'active' : '' }}">
         <i class="nav-icon fas fa-users"></i>

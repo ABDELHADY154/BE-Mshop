@@ -46,6 +46,8 @@ Route::group([
     Route::resource('/orders', 'OrderController');
     Route::resource('/clients', 'ClientController');
     Route::resource('/users', 'UserController');
+    Route::resource('/inventories', 'InventoryController');
+
 
     // Route::get('/clients', 'ClientController@getClients')->name('getClients');
 });

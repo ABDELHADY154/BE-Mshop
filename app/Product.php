@@ -26,4 +26,8 @@ class Product extends Model
     {
         return $this->belongsToMany(Order::class, 'order_details')->withPivot('order_id', 'product_id', 'price', 'quantity', 'total');
     }
+    public function inventory()
+    {
+        return $this->hasOne(Inventory::class);
+    }
 }

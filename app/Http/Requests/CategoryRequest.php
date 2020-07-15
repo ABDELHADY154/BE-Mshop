@@ -13,6 +13,9 @@ class CategoryRequest extends FormRequest
      */
     public function authorize()
     {
+        // if (!$this->user()->is_admin) {
+        //     abort(403);
+        // }
         return true;
     }
 
@@ -25,7 +28,7 @@ class CategoryRequest extends FormRequest
     {
         $rules = [
             'name' => 'required',
-//            'description' => 'required',
+            //            'description' => 'required',
         ];
 
         if ($this->input('parent_id')) {

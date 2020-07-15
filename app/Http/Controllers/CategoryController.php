@@ -21,14 +21,9 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        // $q = $request->query('search');
-
-        // return view('admin.category.index', [
-        //     'categories' => Category::with(['parent'])
-        //         ->where('name', 'LIKE', "%{$q}%")
-        //         ->paginate($request->query('limit', 10))
-        // ]);
-
+        // if (!$request->user()->is_admin) {
+        //     abort(403);
+        // }
         return view('admin.category.index');
     }
 
