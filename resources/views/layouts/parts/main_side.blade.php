@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/admin" class="brand-link text-center">
-
-        <span class="brand-text font-weight-light" style="color: white">M-SHOP</span>
+        <i class="fab fa-maxcdn"></i>
+        <span class="brand-text font-weight-light" style="color: white">- SHOP</span>
     </a>
 
     <!-- Sidebar -->

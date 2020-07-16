@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientLoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -45,7 +46,7 @@ class LoginController extends Controller
 
     public function loginClient(ClientLoginRequest $request)
     {
-        if (auth('clients')->attempt(['email' => $request->get('email'), 'password' => $request->get('password')])) {
+        if (Auth::clients()->attempt(['email' => $request->get('email'), 'password' => $request->get('password')])) {
             return redirect(route('home.index'));
         }
         $errors = ['email' => 'invalid email or password'];

@@ -68,10 +68,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Product::class, 'user_id');
     }
-    public function setPasswordAttribute($plainPassword)
-    {
-        $this->attributes['password'] = Hash::make($plainPassword);
-    }
+    // public function setPasswordAttribute($plainPassword)
+    // {
+    //     $this->attributes['password'] = Hash::make($plainPassword);
+    // }
     public function inventory()
     {
         return $this->hasOne(Inventory::class);

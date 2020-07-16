@@ -35,10 +35,11 @@
     }
 
     #myUL li a {
-        border: 1px solid #ddd;
+        /* border: 1px solid #ddd; */
+        border: none;
         margin-top: -1px;
         /* Prevent double borders */
-        background-color: #f6f6f6;
+        background-color: transparent;
         padding: 12px;
         text-decoration: none;
         font-size: 18px;

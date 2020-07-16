@@ -110,24 +110,31 @@
                         <!-- ./col -->
                     </div>
                     {{-- search for products form  --}}
-
-                    <div class="">
-                        <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
-                            {{-- <i class="fas fa-search" aria-hidden="true"></i> --}}
-                            <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
-                                aria-label="Search" id="myInput" onkeyup="myFunction()">
-                        </form>
-                        <ul id="myUL" class="w-100 m-auto">
-                            @foreach ($products as $product)
-                            <li style="display: none">
-                                <a href="{{route('admin.inventories.create',['productID'=> $product->id])}}">
-                                    {{$product->name}}
-                                    <button class="btn btn-primary">Add To Inventory</button>
-
-                                </a>
-                            </li>
-                            @endforeach
-                        </ul>
+                    <div class="text-center">
+                        <hr>
+                        <h3>Search For Products</h3>
+                    </div>
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <form class="form-group d-block w-100">
+                                    {{-- <i class="fas fa-search" aria-hidden="true"></i> --}}
+                                    <input class="form-control" type="text" placeholder="Search" aria-label="Search"
+                                        id="myInput" onkeyup="myFunction()">
+                                </form>
+                                <ul id="myUL" class="w-100">
+                                    @foreach ($products as $product)
+                                    <li style="display: none">
+                                        <a href="{{route('admin.inventories.create',['productID'=> $product->id])}}">
+                                            {{$product->name}}
+                                            <button class="btn btn-primary float-right">Add To Inventory</button>
+                                        </a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <!-- /.row -->
+                        </div><!-- /.container-fluid -->
                     </div>
 
                 </div>

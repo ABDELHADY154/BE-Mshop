@@ -50,7 +50,8 @@ class UserTable extends TableComponent
     public function tdClass($attribute, $value)
     {
         if ($attribute == 'is_admin' && $value == false) return 'table-danger';
-        if ($attribute == 'is_admin' && $value == 1) return 'table-success';
+        if ($attribute == 'is_admin' && $value == true) return 'table-success';
+
         return null;
     }
     public function columns()

@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Auth;
 //         return redirect(route('admin.dashboard'));
 //     }
 // })->name('front-index');
+
 Route::group(['prefix' => '/', 'as' => 'home.'], function () {
     Route::resource('/', 'FrontController');
 });
@@ -33,6 +34,7 @@ Route::group(['prefix' => '/', 'as' => 'home.'], function () {
 // Route::get('/', 'FrontController@index')->name('front-index');
 
 Route::get('client/logout', 'FrontController@logout')->name('client-logout');
+Auth::routes();
 
 Route::group([
     'prefix' => '/admin',
@@ -52,7 +54,6 @@ Route::group([
     // Route::get('/clients', 'ClientController@getClients')->name('getClients');
 });
 
-Auth::routes();
 Route::get('/{product}', 'FrontController@show')->name('front.show');
 
 

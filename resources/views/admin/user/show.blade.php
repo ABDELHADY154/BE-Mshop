@@ -13,7 +13,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/">admin</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">admin</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Users</a></li>
                         <li class="breadcrumb-item active">Show Client: {{ $user->name }}</li>
                     </ol>

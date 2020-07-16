@@ -58,10 +58,22 @@
             <div class="row">
                 <div class="col-8">
                     <div class="icheck-primary">
-                        <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                        {{-- <input type="checkbox" id="agreeTerms" name="is_admin" value="0">
                         <label for="agreeTerms">
-                            I agree to the <a href="#">terms</a>
-                        </label>
+                            Is Admin<a href="#"></a>
+                        </label> --}}
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="is_admin" id="exampleRadios1" value="1">
+                            <label class="form-check-label" for="exampleRadios1">
+                                admin
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="is_admin" id="exampleRadios2" value="0">
+                            <label class="form-check-label" for="exampleRadios2">
+                                vendor
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <!-- /.col -->

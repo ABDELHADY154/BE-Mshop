@@ -36,6 +36,25 @@
 @endif
 @endif
 
+<div class="form-check">
+    <input class="form-check-input" type="radio" name="is_admin" id="exampleRadios1" value="1"
+        {{isset($user) && $user->is_admin == 1?'checked':''}}>
+    <label class="form-check-label" for="exampleRadios1">
+        admin
+    </label>
+</div>
+<div class="form-check">
+    <input class="form-check-input" type="radio" name="is_admin" id="exampleRadios2" value="0"
+        {{isset($user) && $user->is_admin == 0?'checked':''}}>
+    <label class="form-check-label" for="exampleRadios2">
+        vendor
+    </label>
+</div>
+@if ($errors->first('is_admin'))
+<span class="text-danger">
+    {{ $errors->first('is_admin') }}
+</span>
+@endif
 <div class="text-center">
 
     <button type="submit" class="btn btn-success">Save</button>
