@@ -37,6 +37,8 @@
                     Category: <a
                         href="{{ route('admin.categories.show', $product->category) }}">{{ $product->category->name }}</a>
                     @endif
+                    <img src="/images/{{ $product->image }}">
+
                     {{-- <p>Description: <br> {{ $product->desc }}</p> --}}
                     @if($product->user)
                     <p>merchant : <br> {{ $product->user->name }} </p>

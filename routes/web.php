@@ -15,25 +15,13 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
-// Route::get('/', function () {
-//     return redirect(route('admin.dashboard'));
-// });
 
-// Route::get('/', function () {
-//     if (isset(Auth::guard('clients')->user()->name)) {
-//         return 'welcome ' . Auth::guard('clients')->user()->name;
-//     } else {
-//         return redirect(route('admin.dashboard'));
-//     }
-// })->name('front-index');
 
 Route::group(['prefix' => '/', 'as' => 'home.'], function () {
     Route::resource('/', 'FrontController');
 });
 
-// Route::get('/', 'FrontController@index')->name('front-index');
 
-Route::get('client/logout', 'FrontController@logout')->name('client-logout');
 Auth::routes();
 
 Route::group([
@@ -42,16 +30,15 @@ Route::group([
     'middleware' => 'auth'
 ], function () {
 
-    Route::get('/', 'DashboardController')->name('dashboard');
+    Route::get('/', 'DashboardController@index')->name('dashboard');
     Route::resource('/categories', 'CategoryController');
     Route::resource('/products', 'ProductController');
     Route::resource('/orders', 'OrderController');
     Route::resource('/clients', 'ClientController');
     Route::resource('/users', 'UserController');
     Route::resource('/inventories', 'InventoryController');
-
-
-    // Route::get('/clients', 'ClientController@getClients')->name('getClients');
+    Route::get('image-upload', 'ProductController@imageUpload')->name('image.upload');
+    Route::post('image-upload', 'ProductController@imageUploadPost')->name('image.upload.post');
 });
 
 Route::get('/{product}', 'FrontController@show')->name('front.show');
@@ -65,3 +52,4 @@ Route::post('clients/register', "Auth\RegisterController@registerClient")->name(
 
 Route::get('clients/login', "Auth\LoginController@clientloginForm")->name('client-login-form');
 Route::post('clients/login', "Auth\LoginController@loginClient")->name('login-client');
+Route::get('client/logout', 'Auth\LoginController@logout')->name('client-logout');

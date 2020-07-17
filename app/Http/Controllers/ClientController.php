@@ -15,12 +15,7 @@ class ClientController extends Controller
      */
     public function index(Request $request)
     {
-        // $q = $request->query('search');
 
-        // return view('admin.client.index', [
-        //     'clients' => Client::where('name', 'LIKE', "%{$q}%")
-        //         ->paginate($request->query('limit', 5))
-        // ]);
         return view('admin.client.index');
     }
 

@@ -19,12 +19,6 @@ class FrontController extends Controller
      */
     public function index(Request $request)
     {
-        // if (isset($_GET['category'])) {
-        //     $filter = $_GET['category'];
-        // } else {
-        //     $filter = '';
-        // }
-
         $q = $request->query('search');
         $c = $request->query('category');
         $p = $request->query('price');
@@ -35,7 +29,6 @@ class FrontController extends Controller
             'Allproducts' => Product::all(),
             'products' => Product::where('name', 'like', "%{$q}%")->paginate($request->query('limit', 5)),
             'productsFilterd' => Product::where('price', '=', $p)->orWhere('category_id', '=', $c)->paginate($request->query('limit', 5)),
-            // 'filter' => Product::where(['price', '=', $p] & ['category_id', '=', $c])->paginate($request->query('limit', 5)),
 
 
         ]);
@@ -69,6 +62,9 @@ class FrontController extends Controller
      */
     public function show(Product $product)
     {
+        // if (empty(auth()->guard('clients')->user()->name)) {
+        //     return  redirect(route('login-client'));
+        // }
         return view('clients.show', ['product' => $product]);
     }
 
@@ -104,11 +100,5 @@ class FrontController extends Controller
     public function destroy(Front $front)
     {
         //
-    }
-    public function logout(Request $request)
-    {
-        // Auth::logout();
-        // return redirect(route('front-index'));
-        return redirect('/')->with(Auth::logout());
     }
 }

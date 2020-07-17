@@ -21,9 +21,7 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        // if (!$request->user()->is_admin) {
-        //     abort(403);
-        // }
+
         return view('admin.category.index');
     }
 

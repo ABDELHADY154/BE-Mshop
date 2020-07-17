@@ -2,19 +2,21 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
-            {{-- <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a> --}}
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="/" class="nav-link {{Route::currentRouteName()=='home.index'? 'active':''}}">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            {{-- <a href="{{route('admin.dashboard')}}" class="btn btn-primary">Admin</a> --}}
         </li>
     </ul>
     <div class="ml-auto">
-        @if(isset(auth()->guard('clients')->user()->name) || isset(auth()->guard('users')->user()->name))
+
+        @if(auth('clients') && auth()->guard('clients')->user())
         <div class="text-right">
-            <a href="{{route('client-logout')}}" class="btn btn-danger">Logout</a>
+            <form action="{{route('client-logout')}}" method="GET">
+                @csrf
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
         </div>
         @else
         <div class="text-right">

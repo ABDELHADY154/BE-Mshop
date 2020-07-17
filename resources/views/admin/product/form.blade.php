@@ -45,16 +45,6 @@
     @endif
 
 </div>
-{{-- <div class="form-group">
-    <label for="image">Image</label>
-    <input type="file" name="image" id="image">
-    @if ($errors->first('image'))
-    <span class=" text-danger">
-        {{ $errors->first('image') }}
-</span>
-@endif
-
-</div> --}}
 <div class="form-group">
     <label for="price">price</label>
     <input type="text" name="price" id="price" class="form-control" value="{{ isset($product)?$product->price : '' }}">
@@ -82,6 +72,24 @@
         {{ isset($product)?$product->desc : '' }}
     </textarea>
 </div>
-<div class="text-center">
+<form action="{{ route('admin.image.upload.post') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="row">
+
+        <div class="col-md-6">
+            <input type="file" name="image" class="form-control">
+        </div>
+        @if ($errors->first('image'))
+        <span class="text-danger">
+            {{ $errors->first('image') }}
+        </span>
+        @endif
+        <div class="col-md-6">
+            <button type="submit" class="btn btn-success d-block">Save</button>
+        </div>
+
+    </div>
+</form>
+{{-- <div class="text-center">
     <button type="submit" class="btn btn-success">Save</button>
-</div>
+</div> --}}

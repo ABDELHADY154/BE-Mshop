@@ -19,13 +19,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $q = $request->query('search');
-
-        return view('admin.product.index', [
-            'products' => Product::with(['category'])
-                ->where('name', 'LIKE', "%{$q}%")
-                ->paginate($request->query('limit', 10))
-        ]);
+        return view('admin.product.index');
     }
 
     /**
@@ -35,6 +29,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+
         return view('admin.product.create', [
             'categories' => Category::all(),
             'users' => User::all()
@@ -49,7 +44,6 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        // $image = Storage::putFile('avatars', $request->file('image'));
         return redirect(route('admin.products.show',  Product::create($request->all())));
     }
 
@@ -105,5 +99,34 @@ class ProductController extends Controller
     {
         $product->delete();
         return redirect(route('admin.products.index'));
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function imageUpload(Product $product)
+    {
+        return view('admin.product.show', $product);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function imageUploadPost(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $imageName = time() . '.' . $request->image->extension();
+
+        $request->image->move(public_path('images'), $imageName);
+
+        return back()
+            ->with('success', 'You have successfully upload image.')
+            ->with('image', $imageName);
     }
 }

@@ -20,7 +20,8 @@
                 @foreach ($productsFilterd as $product)
                 <div class="col mb-4 text-center">
                     <div class="card">
-                        <img src="{{$product->image}}" class="card-img-top" alt="product-image">
+
+                        <img src="/images/{{ $product->image }}" class="card-img-top" alt="product-image">
                         <div class="card-body">
                             <h5 class="card-title">{{$product->name}}</h5>
                             <p class="card-text">{{$product->price}} $</p>
@@ -66,9 +67,8 @@
     function change() {
         var slider = document.getElementById("myRange");
     var output = document.getElementById("demo");
-    output.innerHTML = slider.value; // Display the default slider value
+    output.innerHTML = slider.value;
 
-    // Update the current slider value (each time you drag the slider handle)
     slider.oninput = function() {
     output.innerHTML = this.value;
     }

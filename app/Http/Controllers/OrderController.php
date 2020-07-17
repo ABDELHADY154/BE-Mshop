@@ -111,10 +111,8 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        // $quantities = $request->get('quantity');
         return view('admin.order.edit', [
             'orders' => $order,
-            // 'quantity' => $quantities,
             'products' => Product::all(),
             'clients' => Client::all()
 
@@ -154,9 +152,7 @@ class OrderController extends Controller
 
             ];
         }
-        // dd($orderDetails);
         $order->total_amount = $totalAmount;
-        // dd($totalAmount);
         $order->save();
         $order->products()->sync($request->get('products'));
         $order->update($request->all());
@@ -174,10 +170,6 @@ class OrderController extends Controller
     {
 
         $order->delete();
-
-        // $order->products()->detach();
-
-
         return redirect(route('admin.orders.index'));
     }
 }

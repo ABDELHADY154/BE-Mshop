@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->text('desc')->nullable();
             $table->float('price')->default(0);
             $table->integer('quantity')->default(1);
-            $table->binary('image')->nullable();
+            $table->string('image')->nullable();
             $table->softDeletes();
             $table->timestamps();
 

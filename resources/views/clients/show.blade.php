@@ -32,6 +32,8 @@
 
                     <h2>Title: <br> {{ $product->name }}</h2>
                     <p>Price: <br> {{ $product->price }}$</p>
+                    <img src="/images/{{ $product->image }}" class="card-img-top" alt="product-image">
+
                     <hr>
                     <p>Description: <br> {{ $product->desc }}</p>
                     <p>quantity availble: <br> {{ $product->quantity }} item</p>
@@ -39,6 +41,7 @@
                     Category: <a
                         href="{{ route('admin.categories.show', $product->category) }}">{{ $product->category->name }}</a>
                     @endif
+
                     {{-- <p>Description: <br> {{ $product->desc }}</p> --}}
                     @if($product->user)
                     <p>merchant : <br> {{ $product->user->name }} </p>
