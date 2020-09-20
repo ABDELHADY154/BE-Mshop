@@ -23,12 +23,22 @@ class FrontController extends Controller
         $c = $request->query('category');
         $p = $request->query('price');
 
+        $productsQuery = Product::query();
+        if ($q) {
+            $productsQuery->where('name', 'like', "%{$q}%");
+        }
+        if ($c) {
+            $productsQuery->where('category_id', '=', $c);
+        }
+        if ($p) {
+            $productsQuery->where('price', '=', $p);
+        }
 
         return view('clients.index', [
             'categories' => Category::all(),
             'Allproducts' => Product::all(),
-            'products' => Product::where('name', 'like', "%{$q}%")->paginate($request->query('limit', 5)),
-            'productsFilterd' => Product::where('price', '=', $p)->orWhere('category_id', '=', $c)->paginate($request->query('limit', 5)),
+            'products' => $productsQuery->paginate($request->query('limit', 5)),
+            // 'productsFilterd' => Product::where('price', '=', $p)->Where('category_id', '=', $c)->paginate($request->query('limit', 5)),
 
 
         ]);

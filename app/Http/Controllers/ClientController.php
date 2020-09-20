@@ -64,7 +64,6 @@ class ClientController extends Controller
     {
         return view('admin.client.edit', [
             'client' => $client,
-
         ]);
     }
 

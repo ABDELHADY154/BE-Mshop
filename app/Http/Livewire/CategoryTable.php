@@ -28,8 +28,7 @@ class CategoryTable extends TableComponent
             } elseif ($_GET['limit'] == 25) {
                 $num = 25;
                 $this->per_page = $num;
-            }
-            elseif ($_GET['limit'] == 5) {
+            } elseif ($_GET['limit'] == 5) {
                 $num = 5;
                 $this->per_page = $num;
             }
